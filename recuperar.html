@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recuperar contraseña — Tigre Hack '27</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/laptop.css" />
+  <link rel="stylesheet" href="css/celular.css" />
+  <link rel="stylesheet" href="css/tigre.css" />
+  <link rel="stylesheet" href="css/registro.css" />
+</head>
+<body class="page-logo">
+  <div class="tiger-bg"></div>
+
+  <nav>
+    <div class="nav-left">
+      <a href="index.html"><img src="logo.png" alt="Tigre Hack" class="nav-logo" /></a>
+      <span class="nav-badge">'27</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="index.html#about">Acerca de</a>
+      <a href="index.html#schedule">Horario</a>
+      <a href="index.html#sponsors">Patrocinadores</a>
+      <a href="index.html#tracks">Tracks</a>
+      <a href="index.html#faq">Preguntas</a>
+    </div>
+    <div class="nav-right">
+      <a href="login.html" class="nav-back">← Iniciar sesión</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Inicio</a>
+    <a href="index.html#about">Acerca de</a>
+    <a href="index.html#schedule">Horario</a>
+    <a href="index.html#sponsors">Patrocinadores</a>
+    <a href="index.html#tracks">Tracks</a>
+    <a href="index.html#faq">Preguntas</a>
+    <a href="login.html" class="mobile-register">Iniciar sesión</a>
+  </div>
+
+  <main class="reg-main auth-main">
+    <div class="reg-head" id="recHead">
+      <h1 class="reg-title">Recuperar <span>contraseña</span></h1>
+      <p class="reg-sub">Escribe el correo con el que te registraste y crea una contraseña nueva.</p>
+    </div>
+
+    <form class="reg-form" id="recForm" novalidate>
+      <fieldset class="reg-block">
+        <legend>Nueva contraseña</legend>
+        <label class="field">
+          <span>Correo electrónico <b>*</b></span>
+          <input type="email" name="correo" required placeholder="Ej. nombre@ejemplo.com" autocomplete="username" />
+        </label>
+        <div class="field-row">
+          <label class="field">
+            <span>Nueva contraseña <b>*</b></span>
+            <input type="password" name="password" required minlength="8" placeholder="Mínimo 8 caracteres" autocomplete="new-password" />
+          </label>
+          <label class="field">
+            <span>Confirmar contraseña <b>*</b></span>
+            <input type="password" name="password2" required minlength="8" placeholder="Repite la contraseña" autocomplete="new-password" />
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="reg-actions">
+        <button type="submit" class="btn btn-submit">Cambiar contraseña</button>
+        <p class="reg-note" id="recNote"></p>
+        <p class="auth-link">¿La recordaste? <a href="login.html">Inicia sesión</a></p>
+      </div>
+    </form>
+
+    <div class="reg-done" id="recDone" hidden>
+      <div class="done-icon">🔒</div>
+      <h2>Contraseña actualizada</h2>
+      <p>Ya puedes entrar con tu nueva contraseña.</p>
+      <a href="login.html" class="btn">Iniciar sesión</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="f-logo">🐯 TIGRE HACK '27 · UANL</div>
+    <p>© 2027 Tigre Hack — Universidad Autónoma de Nuevo León. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script>
+    setupMobileMenu();
+
+    const recForm = document.getElementById("recForm");
+    const recNote = document.getElementById("recNote");
+
+    recForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      recNote.textContent = "";
+
+      if (!recForm.checkValidity()) {
+        recForm.querySelector(":invalid").focus();
+        recNote.textContent = "Completa todos los campos.";
+        return;
+      }
+
+      if (recForm.password.value !== recForm.password2.value) {
+        recNote.textContent = "Las contraseñas no coinciden.";
+        recForm.password2.focus();
+        return;
+      }
+
+      const res = await resetPassword(recForm.correo.value, recForm.password.value);
+      if (!res.ok) {
+        recNote.innerHTML = `${res.error} <a href="registro.html">Regístrate aquí</a>`;
+        return;
+      }
+
+      recForm.hidden = true;
+      document.getElementById("recHead").hidden = true;
+      document.getElementById("recDone").hidden = false;
+    });
+  </script>
+</body>
+</html>

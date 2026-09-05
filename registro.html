@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro — Tigre Hack '27</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/laptop.css" />
+  <link rel="stylesheet" href="css/celular.css" />
+  <link rel="stylesheet" href="css/tigre.css" />
+  <link rel="stylesheet" href="css/registro.css" />
+</head>
+<body class="page-logo">
+  <div class="tiger-bg"></div>
+
+  <nav>
+    <div class="nav-left">
+      <a href="index.html"><img src="logo.png" alt="Tigre Hack" class="nav-logo" /></a>
+      <span class="nav-badge">'27</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="index.html#about">Acerca de</a>
+      <a href="index.html#schedule">Horario</a>
+      <a href="index.html#sponsors">Patrocinadores</a>
+      <a href="index.html#tracks">Tracks</a>
+      <a href="index.html#faq">Preguntas</a>
+    </div>
+    <div class="nav-right">
+      <a href="#" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
+        </svg>
+      </a>
+      <a href="#" target="_blank" rel="noopener" title="X" aria-label="X">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.53 3h3.02l-6.6 7.54L21.75 21h-5.9l-4.62-5.9L5.94 21H2.92l7.06-8.07L2.5 3h6.05l4.18 5.4L17.53 3Zm-1.06 16.2h1.67L7.6 4.71H5.81l10.66 14.49Z" />
+        </svg>
+      </a>
+      <a href="#" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.02-3.07-1.9-3.07-1.9 0-2.2 1.46-2.2 2.97V21h-4V9Z" />
+        </svg>
+      </a>
+      <a href="login.html" class="nav-login">Iniciar sesión</a>
+      <a href="index.html" class="nav-cta">Inicio</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Inicio</a>
+    <a href="index.html#about">Acerca de</a>
+    <a href="index.html#schedule">Horario</a>
+    <a href="index.html#sponsors">Patrocinadores</a>
+    <a href="index.html#tracks">Tracks</a>
+    <a href="index.html#faq">Preguntas</a>
+    <a href="login.html">Iniciar sesión</a>
+    <a href="index.html" class="mobile-register">Volver al inicio</a>
+  </div>
+
+  <main class="reg-main">
+    <div class="reg-head">
+      <h1 class="s-title clawed">Registro <span>individual</span></h1>
+      <p class="s-sub">Llena tus datos para participar en Tigre Hack '27. Te registras solo; el equipo de hasta 4 se arma antes del evento.</p>
+    </div>
+
+    <form class="reg-form" id="regForm" novalidate>
+      <fieldset class="reg-block">
+        <legend><span class="leg-n"><span class="brkt">&lt;</span> 01 <span class="brkt">/&gt;</span></span> Datos personales</legend>
+        <div class="field-row">
+          <label class="field">
+            <span>Nombre <b>*</b></span>
+            <input type="text" name="nombre" required maxlength="60" placeholder="Ej. Ana Sofía" />
+          </label>
+          <label class="field">
+            <span>Apellido <b>*</b></span>
+            <input type="text" name="apellido" required maxlength="60" placeholder="Ej. Ramírez Torres" />
+          </label>
+        </div>
+        <div class="field-row">
+          <label class="field"> 
+            <span>Correo electrónico <b>*</b></span>
+            <input type="email" name="correo" required placeholder="Ej. nombre@ejemplo.com" />
+          </label>
+          <label class="field">
+            <span>Número de teléfono <b>*</b></span>
+            <input type="tel" name="telefono" required inputmode="tel" placeholder="Ej. +52 81 1234 5678" />
+          </label>
+        </div>
+        <label class="field">
+          <span>Género <b>*</b></span>
+          <select name="genero" required>
+            <option value="">Selecciona una opción</option>
+            <option>Masculino</option>
+            <option>Femenino</option>
+            <option>No binario</option>
+            <option>Otro</option>
+            <option>Prefiero no decirlo</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <fieldset class="reg-block">
+        <legend><span class="leg-n"><span class="brkt">&lt;</span> 02 <span class="brkt">/&gt;</span></span> Contraseña de tu cuenta</legend>
+        <p class="block-hint">Usa al menos 8 caracteres. Te servirá para consultar y editar tu registro cuando quieras.</p>
+        <div class="field-row">
+          <label class="field">
+            <span>Contraseña <b>*</b></span>
+            <div class="pass-wrap">
+              <input type="password" name="password" required minlength="8" placeholder="Mínimo 8 caracteres" autocomplete="new-password" />
+              <button type="button" class="pass-toggle" aria-label="Mostrar contraseña" aria-pressed="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </button>
+            </div>
+          </label>
+          <label class="field">
+            <span>Confirmar contraseña <b>*</b></span>
+            <div class="pass-wrap">
+              <input type="password" name="password2" required minlength="8" placeholder="Repite tu contraseña" autocomplete="new-password" />
+              <button type="button" class="pass-toggle" aria-label="Mostrar contraseña" aria-pressed="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </button>
+            </div>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="reg-block">
+        <legend><span class="leg-n"><span class="brkt">&lt;</span> 03 <span class="brkt">/&gt;</span></span> Información académica</legend>
+        <div class="field-row">
+          <label class="field">
+            <span>Universidad o escuela <b>*</b></span>
+            <input type="text" name="universidad" required maxlength="100" placeholder="Ej. Universidad Autónoma de Nuevo León" />
+          </label>
+          <label class="field">
+            <span>Carrera o área de estudio <b>*</b></span>
+            <input type="text" name="carrera" required maxlength="100" placeholder="Ej. Ingeniería en Tecnología de Software" />
+          </label>
+        </div>
+        <div class="field-row">
+          <label class="field">
+            <span>Año de graduación <b>*</b></span>
+            <select name="graduacion" required>
+              <option value="">Selecciona un año</option>
+              <option>2027</option><option>2028</option><option>2029</option>
+              <option>2030</option><option>2031</option><option>2032</option>
+              <option>2033</option><option>2034 o después</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Nivel de estudios <b>*</b></span>
+            <select name="nivel" required>
+              <option value="">Selecciona un nivel</option>
+              <option>Preparatoria / Bachillerato</option>
+              <option>Licenciatura (1er año)</option>
+              <option>Licenciatura (2do año)</option>
+              <option>Licenciatura (3er año o más)</option>
+              <option>Maestría</option>
+              <option>Doctorado</option>
+              <option>Egresado reciente</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="reg-block">
+        <legend><span class="leg-n"><span class="brkt">&lt;</span> 04 <span class="brkt">/&gt;</span></span> Preferencias del evento</legend>
+        <div class="field-row">
+          <label class="field">
+            <span>Talla de playera <b>*</b></span>
+            <select name="talla" required>
+              <option value="">Selecciona una talla</option>
+              <option>Extra chica (XS)</option>
+              <option>Chica (S)</option>
+              <option>Mediana (M)</option>
+              <option>Grande (L)</option>
+              <option>Extra grande (XL)</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Restricciones alimenticias</span>
+            <input type="text" name="dieta" maxlength="120" placeholder="Ej. Vegetariano, alergia a nueces, ninguna" />
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="reg-block">
+        <legend><span class="leg-n"><span class="brkt">&lt;</span> 05 <span class="brkt">/&gt;</span></span> Enlaces y redes</legend>
+        <div class="field-row">
+          <label class="field">
+            <span>URL de GitHub <b>*</b></span>
+            <input type="url" name="github" required placeholder="Ej. https://github.com/usuario" />
+          </label>
+          <label class="field">
+            <span>URL de Devpost</span>
+            <input type="url" name="devpost" placeholder="Ej. https://devpost.com/usuario" />
+          </label>
+        </div>
+        <div class="field-row">
+          <label class="field">
+            <span>URL de LinkedIn</span>
+            <input type="url" name="linkedin" placeholder="Ej. https://linkedin.com/in/usuario" />
+          </label>
+          <label class="field">
+            <span>URL de sitio web personal</span>
+            <input type="url" name="sitio" placeholder="Ej. https://tusitio.com" />
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="reg-block">
+        <legend><span class="leg-n"><span class="brkt">&lt;</span> 06 <span class="brkt">/&gt;</span></span> Confirmación</legend>
+        <label class="check">
+          <input type="checkbox" name="reglamento" required />
+          <span>Acepto el reglamento del evento y el aviso de privacidad. <b>*</b></span>
+        </label>
+        <label class="check">
+          <input type="checkbox" name="estudiante" required />
+          <span>Confirmo que soy estudiante activo o egresado reciente. <b>*</b></span>
+        </label>
+        <details class="aviso-priv">
+          <summary>Aviso de privacidad</summary>
+          <p>Al registrarte, Tigre Hack y la UANL usarán tus datos para organizar el evento: confirmar tu lugar, comunicarte horarios y logística, preparar gafete, comida y seguridad.</p>
+          <p>También se podrán compartir con las empresas patrocinadoras y reclutadoras del hackathon, solo para vinculación, mentoría y oportunidades laborales o académicas relacionadas con el evento. No se venden ni se usan para publicidad ajena.</p>
+          <p>Puedes pedir acceso, corrección o eliminación de tus datos escribiendo a la organización.</p>
+        </details>
+      </fieldset>
+
+      <div class="reg-actions">
+        <button type="submit" class="btn"><span class="brkt">&lt;</span> Crear cuenta <span class="brkt">/&gt;</span></button>
+        <p class="reg-note" id="regNote"></p>
+        <p class="auth-link">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+      </div>
+    </form>
+
+    <div class="reg-done" id="regDone" hidden>
+      <span class="hero-tag"><span class="brkt">&lt;</span> listo <span class="brkt">/&gt;</span></span>
+      <h2>Registro <span>enviado</span></h2>
+      <p id="doneMsg"></p>
+      <a href="perfil.html" class="btn"><span class="brkt">&lt;</span> Ver mi perfil <span class="brkt">/&gt;</span></a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="f-logo">TIGRE HACK '27 · UANL</div>
+    <div class="f-socials">
+      <a href="#" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
+        </svg>
+      </a>
+      <a href="#" target="_blank" rel="noopener" title="X" aria-label="X">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.53 3h3.02l-6.6 7.54L21.75 21h-5.9l-4.62-5.9L5.94 21H2.92l7.06-8.07L2.5 3h6.05l4.18 5.4L17.53 3Zm-1.06 16.2h1.67L7.6 4.71H5.81l10.66 14.49Z" />
+        </svg>
+      </a>
+      <a href="#" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.02-3.07-1.9-3.07-1.9 0-2.2 1.46-2.2 2.97V21h-4V9Z" />
+        </svg>
+      </a>
+      <a href="mailto:" title="Email" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="3" />
+          <path d="m3 7 9 6 9-6" />
+        </svg>
+      </a>
+    </div>
+    <p>© 2027 Tigre Hack — Universidad Autónoma de Nuevo León. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/registro.js"></script>
+</body>
+</html>

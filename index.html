@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tigre Hack '27 — UANL</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/laptop.css" />
+  <link rel="stylesheet" href="css/celular.css" />
+  <link rel="stylesheet" href="css/tigre.css?v=contador-sin-caja" />
+</head>
+<body class="page-logo">
+  <div class="tiger-bg"></div>
+
+  <nav>
+    <div class="nav-left">
+      <img src="logo.png" alt="Tigre Hack" class="nav-logo" />
+      <span class="nav-badge">'27</span>
+    </div>
+    <div class="nav-links">
+      <a href="#home" class="active">Inicio</a>
+      <a href="#about">Acerca de</a>
+      <a href="#schedule">Horario</a>
+      <a href="#sponsors">Patrocinadores</a>
+      <a href="#tracks">Tracks</a>
+      <a href="#faq">Preguntas</a>
+    </div>
+    <div class="nav-right">
+      <!-- Cambia el href por el link real de cada red -->
+      <a href="#" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
+        </svg>
+      </a>
+      <a href="#" target="_blank" rel="noopener" title="X" aria-label="X">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.53 3h3.02l-6.6 7.54L21.75 21h-5.9l-4.62-5.9L5.94 21H2.92l7.06-8.07L2.5 3h6.05l4.18 5.4L17.53 3Zm-1.06 16.2h1.67L7.6 4.71H5.81l10.66 14.49Z" />
+        </svg>
+      </a>
+      <a href="#" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.02-3.07-1.9-3.07-1.9 0-2.2 1.46-2.2 2.97V21h-4V9Z" />
+        </svg>
+      </a>
+      <a href="login.html" class="nav-login">Iniciar sesión</a>
+      <a href="registro.html" class="nav-cta">Registro</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home" class="active">Inicio</a>
+    <a href="#about">Acerca de</a>
+    <a href="#schedule">Horario</a>
+    <a href="#sponsors">Patrocinadores</a>
+    <a href="#tracks">Tracks</a>
+    <a href="#faq">Preguntas</a>
+    <a href="login.html">Iniciar sesión</a>
+    <a href="registro.html" class="mobile-register">Regístrate</a>
+  </div>
+
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <img class="hero-logo" src="logo.png" alt="Tigre Hack Logo" />
+      <span class="hero-tag"><span class="brkt">&lt;</span> suelta al tigre que llevas dentro <span class="brkt">/&gt;</span></span>
+      <p class="hero-sub">16, 17 y 18 de abril de 2027 · Hackathon de 36 horas · UANL, Monterrey N.L.</p>
+      <div class="hero-acts">
+        <a href="registro.html" class="btn"><span class="brkt">&lt;</span> Quiero entrar <span class="brkt">/&gt;</span></a>
+        <span class="hero-gratis">Gratis · Cupo limitado</span>
+      </div>
+      <div class="countdown">
+        <div class="count-block" id="cd-months-block">
+          <span class="count-num" id="cd-months">00</span>
+          <span class="count-label">meses</span>
+        </div>
+        <span class="count-sep" id="cd-months-sep">:</span>
+        <div class="count-block">
+          <span class="count-num" id="cd-days">00</span>
+          <span class="count-label">días</span>
+        </div>
+        <span class="count-sep">:</span>
+        <div class="count-block">
+          <span class="count-num" id="cd-hours">00</span>
+          <span class="count-label">horas</span>
+        </div>
+        <span class="count-sep">:</span>
+        <div class="count-block">
+          <span class="count-num active" id="cd-mins">00</span>
+          <span class="count-label">minutos</span>
+        </div>
+        <span class="count-sep">:</span>
+        <div class="count-block">
+          <span class="count-num" id="cd-secs">00</span>
+          <span class="count-label">segundos</span>
+        </div>
+      </div>
+    </div>
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-in">
+        <span>36 horas</span><span>500 hackers</span><span>$100,000 MXN en premios</span><span>Entrada gratis</span><span>4 tracks</span><span>UANL Monterrey</span>
+        <span>36 horas</span><span>500 hackers</span><span>$100,000 MXN en premios</span><span>Entrada gratis</span><span>4 tracks</span><span>UANL Monterrey</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="about s-azul" id="about">
+    <div class="container">
+      <span class="tag">01 / Acerca</span>
+      <h2 class="s-title clawed">¿Qué es <span>Tigre Hack</span>?</h2>
+      <p class="s-sub">Tigre Hack es el hackathon universitario de la Universidad Autónoma de Nuevo León, la segunda universidad pública más grande de México. 36 horas seguidas en las que equipos de hasta 4 personas construyen un proyecto tecnológico desde cero y lo presentan ante un jurado de la industria.</p>
+
+      <div class="stat-strip">
+        <div class="stat-cell">
+          <span class="stat-num" data-count="500">500</span><span class="stat-plus">+</span>
+          <span class="stat-lbl">Hackers esperados</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-num" data-count="20">20</span><span class="stat-plus">+</span>
+          <span class="stat-lbl">Empresas aliadas</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-num" data-count="40">40</span><span class="stat-plus">+</span>
+          <span class="stat-lbl">Mentores y jueces</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-num" data-count="100">100</span><span class="stat-plus">K</span>
+          <span class="stat-lbl">MXN en premios</span>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="card">
+          <div class="val-n">01</div>
+          <div class="icon">💡</div>
+          <h3>Construyes algo real</h3>
+          <p>Eliges un reto, formas tu equipo y desarrollas una solución funcional: una app, una web, un modelo de IA o un prototipo con hardware.</p>
+        </div>
+        <div class="card">
+          <div class="val-n">02</div>
+          <div class="icon">🎤</div>
+          <h3>Demo Day</h3>
+          <p>Al final presentas tu proyecto en vivo ante un jurado de profesores y profesionales del sector tecnológico.</p>
+        </div>
+        <div class="card">
+          <div class="val-n">03</div>
+          <div class="icon">🤝</div>
+          <h3>Networking</h3>
+          <p>Convives con cientos de estudiantes de distintas facultades y con empresas que están buscando talento nuevo.</p>
+        </div>
+        <div class="card">
+          <div class="val-n">04</div>
+          <div class="icon">🍕</div>
+          <h3>Todo incluido</h3>
+          <p>Comida, bebidas, café ilimitado, internet, espacio de trabajo y swag del evento. No pagas nada por participar.</p>
+        </div>
+        <div class="card">
+          <div class="val-n">05</div>
+          <div class="icon">🏆</div>
+          <h3>Premios</h3>
+          <p>Más de $100,000 MXN repartidos entre las categorías, además de becas y oportunidades de empleo con nuestros patrocinadores.</p>
+        </div>
+      </div>
+
+      <div class="about-extra">
+        <div class="extra-item">
+          <span class="extra-num">36</span>
+          <p>horas continuas de desarrollo, de viernes a domingo.</p>
+        </div>
+        <div class="extra-item">
+          <span class="extra-num">4</span>
+          <p>integrantes máximo por equipo. Te registras solo y armas tu equipo.</p>
+        </div>
+        <div class="extra-item">
+          <span class="extra-num">$0</span>
+          <p>de costo. El evento es totalmente gratuito para estudiantes.</p>
+        </div>
+      </div>
+
+      <div class="respaldo">
+        <h3 class="respaldo-title">Respaldado por</h3>
+        <div class="respaldo-grid">
+          <div class="respaldo-item">
+            <span class="respaldo-icon">🎓</span>
+            <div>
+              <h4>Universidad Autónoma de Nuevo León</h4>
+              <p>Más de 220,000 estudiantes y 90 años formando al talento del noreste de México.</p>
+            </div>
+          </div>
+          <div class="respaldo-item">
+            <span class="respaldo-icon">🏭</span>
+            <div>
+              <h4>Sede en Monterrey</h4>
+              <p>El principal polo industrial y tecnológico del país, con presencia de empresas globales.</p>
+            </div>
+          </div>
+          <div class="respaldo-item">
+            <span class="respaldo-icon">💼</span>
+            <div>
+              <h4>Vinculación con la industria</h4>
+              <p>Los proyectos se evalúan frente a reclutadores y líderes técnicos de empresas del sector.</p>
+            </div>
+          </div>
+          <div class="respaldo-item">
+            <span class="respaldo-icon">🌎</span>
+            <div>
+              <h4>Convocatoria nacional</h4>
+              <p>Abierto a estudiantes de cualquier universidad de México, sin costo de inscripción.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tracks" id="tracks">
+    <div class="container">
+      <span class="tag">02 / Tracks</span>
+      <h2 class="s-title clawed">Tracks de <span>Competencia</span></h2>
+      <p class="s-sub">Elige el área que más te apasione y construye algo increíble en 36 horas.</p>
+      <div class="tracks-grid">
+        <div class="track"><div class="icon">🤖</div><h3>Inteligencia Artificial</h3><p>ML, NLP, visión por computadora.</p></div>
+        <div class="track"><div class="icon">🌱</div><h3>Sustentabilidad</h3><p>Tecnología verde para el planeta.</p></div>
+        <div class="track"><div class="icon">🏥</div><h3>Salud</h3><p>Innovación en salud y bienestar.</p></div>
+        <div class="track"><div class="icon">📚</div><h3>Educación</h3><p>Herramientas para el aprendizaje.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="schedule s-oro" id="schedule">
+    <div class="container">
+      <span class="tag">03 / Horario</span>
+      <h2 class="s-title clawed">Horario del <span>Evento</span></h2>
+      <p class="s-sub">De viernes a domingo: 36 horas de hacking continuo y Demo Day.</p>
+
+      <div class="day-tabs" role="tablist">
+        <button class="day-tab active" data-day="vie" role="tab" aria-selected="true">
+          <span class="dt-num">16</span>
+          <b>Viernes</b>
+          <small>Arranque</small>
+        </button>
+        <button class="day-tab" data-day="sab" role="tab" aria-selected="false">
+          <span class="dt-num">17</span>
+          <b>Sábado</b>
+          <small>Hacking</small>
+        </button>
+        <button class="day-tab" data-day="dom" role="tab" aria-selected="false">
+          <span class="dt-num">18</span>
+          <b>Domingo</b>
+          <small>Demo Day</small>
+        </button>
+      </div>
+
+      <div class="schedule-board">
+        <div class="timeline is-on" id="day-vie">
+          <article class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <div class="time">5:00 – 7:00 PM</div>
+              <h3>Check-in y registro</h3>
+              <p>Dos horas para llegar sin prisas: recoge tu gafete, tu kit e instálate con tu equipo.</p>
+            </div>
+          </article>
+          <article class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <div class="time">7:00 – 8:00 PM</div>
+              <h3>Charla de apertura</h3>
+              <p>Bienvenida, presentación de retos, premios y reglas del evento.</p>
+            </div>
+          </article>
+          <article class="t-item highlight">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <div class="time">8:00 PM</div>
+              <h3>Arranca el hacking</h3>
+              <p>Empiezan las 36 horas oficiales. El reloj no se detiene.</p>
+            </div>
+          </article>
+          <article class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <div class="time">9:00 PM</div>
+              <h3>Cena</h3>
+              <p>Primera recarga sin parar el reloj.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="timeline" id="day-sab">
+          <article class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <div class="time">10:00 AM</div>
+              <h3>Desayuno</h3>
+              <p>Para los que durmieron y para los que no.</p>
+            </div>
+          </article>
+          <article class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <div class="time">2:00 PM</div>
+              <h3>Comida</h3>
+              <p>Pausa obligatoria. Sal de la silla.</p>
+            </div>
+          </article>
+          <article class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <div class="time">9:00 PM</div>
+              <h3>Cena</h3>
+              <p>Última recarga fuerte antes del sprint final.</p>
+            </div>
+          </article>
+          <article class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <div class="time">11:00 PM</div>
+              <h3>Noche de tigres</h3>
+              <p>Torneo relámpago, videojuegos y dinámicas para despejarte.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="timeline" id="day-dom">
+          <article class="t-item highlight">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <div class="time">8:00 AM</div>
+              <h3>Cierre de código</h3>
+              <p>Se cumplen las 36 horas. Dejas de escribir código.</p>
+            </div>
+          </article>
+          <article class="t-item highlight">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <div class="time">8:15 AM</div>
+              <h3>Entrega en la plataforma</h3>
+              <p>Repo, video y presentación deben estar subidos. Después de esta hora no se aceptan cambios.</p>
+            </div>
+          </article>
+          <article class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <div class="time">8:30 AM</div>
+              <h3>Ensayo libre</h3>
+              <p>Monta tu stand y practica el pitch antes de que lleguen los jueces.</p>
+            </div>
+          </article>
+          <article class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <div class="time">10:00 AM</div>
+              <h3>Desayuno</h3>
+              <p>Ya la libraste. Come antes de presentar.</p>
+            </div>
+          </article>
+          <article class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <div class="time">11:00 AM</div>
+              <h3>Ronda de jueces</h3>
+              <p>Expo por mesas: los jueces pasan a tu stand para ver la demo en vivo.</p>
+            </div>
+          </article>
+          <article class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <div class="time">12:30 PM</div>
+              <h3>Pitch de finalistas</h3>
+              <p>Los mejores equipos presentan en el escenario principal.</p>
+            </div>
+          </article>
+          <article class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <div class="time">2:00 PM</div>
+              <h3>Comida</h3>
+              <p>Comemos juntos mientras delibera el jurado.</p>
+            </div>
+          </article>
+          <article class="t-item highlight">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <div class="time">3:30 PM</div>
+              <h3>Premiación y clausura</h3>
+              <p>Ganadores generales, premios por reto y menciones especiales.</p>
+            </div>
+          </article>
+          <article class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-body">
+              <div class="time">4:30 PM</div>
+              <h3>Foto grupal y despedida</h3>
+              <p>Nos llevamos la foto y tú te llevas el proyecto.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sponsors" id="sponsors">
+    <div class="container">
+      <span class="tag">04 / Patrocinadores</span>
+      <h2 class="s-title clawed">Nuestros <span>Patrocinadores</span></h2>
+      <p class="s-sub">Empresas que impulsan la innovación universitaria.</p>
+      <div class="sponsors-row">
+        <div class="sp-box"><span>Nivel Oro</span><b>Tu logo aquí</b></div>
+        <div class="sp-box"><span>Nivel Oro</span><b>Tu logo aquí</b></div>
+        <div class="sp-box"><span>Nivel Plata</span><b>Tu logo aquí</b></div>
+        <div class="sp-box"><span>Nivel Plata</span><b>Tu logo aquí</b></div>
+        <div class="sp-box"><span>Nivel Bronce</span><b>Tu logo aquí</b></div>
+        <div class="sp-box"><span>Nivel Bronce</span><b>Tu logo aquí</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq s-azul" id="faq">
+    <div class="container">
+      <span class="tag">05 / Preguntas</span>
+      <h2 class="s-title clawed">Preguntas <span>Frecuentes</span></h2>
+      <p class="s-sub">Todo lo que necesitas saber antes de llegar.</p>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">¿Quién puede participar? <span class="arr">▼</span></div>
+          <div class="faq-a">Cualquier estudiante universitario activo en México. ¡No necesitas experiencia previa!</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Cuánto cuesta participar? <span class="arr">▼</span></div>
+          <div class="faq-a">Es completamente gratis. Incluye comida, bebidas, swag y espacio de trabajo.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Necesito un equipo? <span class="arr">▼</span></div>
+          <div class="faq-a">El registro es individual, pero debes formar tu propio equipo de hasta 4 personas antes del evento.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Qué debo llevar? <span class="arr">▼</span></div>
+          <div class="faq-a">Tu laptop, cargador y muchas ganas. Nosotros ponemos la comida, internet, espacio y café ☕.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Dónde será el evento? <span class="arr">▼</span></div>
+          <div class="faq-a">En las instalaciones de la UANL, Monterrey N.L. La ubicación exacta se comparte al confirmar registro.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="register">
+    <div class="container">
+      <h2 class="s-title">¿Listo para <span>hackear</span>?</h2>
+      <p class="s-sub">Únete a cientos de estudiantes y construye el futuro en 36 horas. Completamente gratis.</p>
+      <a href="registro.html" class="btn">Regístrate Ahora</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="f-logo">🐯 TIGRE HACK '27 · UANL</div>
+    <div class="f-socials">
+      <!-- Cambia el href por el link real de cada red -->
+      <a href="#" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
+        </svg>
+      </a>
+      <a href="#" target="_blank" rel="noopener" title="X" aria-label="X">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.53 3h3.02l-6.6 7.54L21.75 21h-5.9l-4.62-5.9L5.94 21H2.92l7.06-8.07L2.5 3h6.05l4.18 5.4L17.53 3Zm-1.06 16.2h1.67L7.6 4.71H5.81l10.66 14.49Z" />
+        </svg>
+      </a>
+      <a href="#" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.02-3.07-1.9-3.07-1.9 0-2.2 1.46-2.2 2.97V21h-4V9Z" />
+        </svg>
+      </a>
+      <a href="mailto:" title="Email" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="3" />
+          <path d="m3 7 9 6 9-6" />
+        </svg>
+      </a>
+    </div>
+    <p>© 2027 Tigre Hack — Universidad Autónoma de Nuevo León. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+/* Estilos solo para laptop / escritorio */
+@media (min-width: 769px) {
+  nav {
+    padding: 0.8rem 2.5rem;
+    justify-content: flex-start;
+    gap: 1.35rem;
+  }
+  .nav-logo { height: 44px; }
+  .nav-links { display: flex; gap: 1.45rem; }
+  .nav-right { display: flex; margin-left: auto; }
+  .menu-btn,
+  .mobile-menu { display: none !important; }
+
+  .hero {
+    height: 100vh;
+    justify-content: flex-start;
+    padding-top: 5.6rem;
+    padding-bottom: 3.4rem;
+  }
+  .hero-logo {
+    width: 480px;
+    margin: 0 auto -0.5rem;
+    filter: drop-shadow(0 0 40px rgba(255, 195, 0, 0.25));
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    max-width: 640px;
+    margin: 0 auto 0.15rem;
+  }
+  .hero-acts { margin: 0.1rem auto 0.45rem; }
+
+  .countdown { gap: 2.5rem; }
+  .count-num { font-size: 4.5rem; }
+  .count-sep { font-size: 4rem; display: block; }
+
+  section { padding: 6rem 2rem; }
+  .s-title { font-size: 3rem; }
+  .s-sub { margin: 0 auto 3rem; font-size: 1rem; }
+
+  .stat-strip {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 2rem 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .stat-num { font-size: 3.2rem; }
+  .stat-plus { font-size: 2rem; }
+  .stat-lbl { font-size: 0.72rem; margin-top: 0.5rem; }
+
+  .respaldo { margin-top: 3.5rem; padding-top: 2.5rem; }
+  .respaldo-title { font-size: 0.85rem; margin-bottom: 2rem; }
+  .respaldo-grid { grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
+  .respaldo-item { gap: 1rem; }
+  .respaldo-icon { font-size: 1.8rem; }
+  .respaldo-item h4 { font-size: 1rem; }
+  .respaldo-item p { font-size: 0.88rem; }
+
+  .about-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .about-extra {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+  }
+  .extra-num { font-size: 3rem; margin-bottom: 0.5rem; }
+  .extra-item p { font-size: 0.92rem; max-width: 260px; margin: 0 auto; }
+  .card { padding: 2rem; }
+  .card .icon { font-size: 1.7rem; width: 58px; height: 58px; }
+  .card h3 { font-size: 1.15rem; }
+  .card p { font-size: 0.9rem; }
+  .card {
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 #101010;
+  }
+
+  .tracks-grid { grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  .track { padding: 1.75rem; transition: transform 0.15s, box-shadow 0.15s; }
+  .track .icon { font-size: 1.7rem; width: 58px; height: 58px; }
+  .track h3 { font-size: 1rem; }
+  .track p { font-size: 0.85rem; }
+  .track:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 #101010;
+  }
+
+  .timeline { max-width: 900px; }
+  body.page-logo .schedule { padding-bottom: 6rem; }
+  body.page-logo .sponsors { padding-top: 7rem; }
+  .t-body h3 { font-size: 1.05rem; }
+  .t-body p { font-size: 0.88rem; }
+
+  .sponsors .s-sub { margin: 0 auto 3rem; }
+  .sponsors-row { gap: 2rem; }
+  .sp-box { width: 170px; height: 85px; }
+  .sp-box:hover { border-color: var(--yellow); opacity: 0.85; }
+
+  .faq-list { max-width: 740px; gap: 0.9rem; margin-left: auto; margin-right: auto; }
+  .faq-q { padding: 1.1rem 1.4rem; font-size: 0.95rem; }
+  .faq-a { padding: 0 1.4rem 1.1rem; font-size: 0.9rem; }
+  .faq-item:hover { border-color: rgba(255, 195, 0, 0.25); }
+
+  .cta { padding: 7rem 2rem; }
+  .cta .s-sub { margin-bottom: 2rem; }
+  .btn { padding: 1rem 2.6rem; font-size: 1.6rem; }
+  .btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 rgba(16, 16, 16, 0.35);
+  }
+
+  footer { padding: 2.5rem 2rem; }
+  .f-logo { font-size: 1.2rem; }
+  .f-socials a:hover { border-color: var(--yellow); color: var(--yellow); }
+}

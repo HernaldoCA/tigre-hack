@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi perfil — Tigre Hack '27</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/laptop.css" />
+  <link rel="stylesheet" href="css/celular.css" />
+  <link rel="stylesheet" href="css/tigre.css" />
+  <link rel="stylesheet" href="css/registro.css" />
+</head>
+<body class="page-logo">
+  <div class="tiger-bg"></div>
+
+  <nav>
+    <div class="nav-left">
+      <a href="index.html"><img src="logo.png" alt="Tigre Hack" class="nav-logo" /></a>
+      <span class="nav-badge">'27</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="index.html#about">Acerca de</a>
+      <a href="index.html#schedule">Horario</a>
+      <a href="index.html#sponsors">Patrocinadores</a>
+      <a href="index.html#tracks">Tracks</a>
+      <a href="index.html#faq">Preguntas</a>
+    </div>
+    <div class="nav-right">
+      <button type="button" class="nav-cta" id="logoutBtn">Cerrar sesión</button>
+    </div>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Inicio</a>
+    <a href="index.html#about">Acerca de</a>
+    <a href="index.html#schedule">Horario</a>
+    <a href="index.html#sponsors">Patrocinadores</a>
+    <a href="index.html#tracks">Tracks</a>
+    <a href="index.html#faq">Preguntas</a>
+    <a href="#" class="mobile-register" id="logoutBtnMobile">Cerrar sesión</a>
+  </div>
+
+  <main class="reg-main">
+    <div class="reg-head">
+      <h1 class="reg-title">Mi <span>registro</span></h1>
+      <p class="reg-sub" id="perfilSub"></p>
+    </div>
+
+    <div class="perfil-status">
+      <span class="badge-ok">✅ Registro confirmado</span>
+    </div>
+
+    <form class="reg-form" id="perfilForm" novalidate>
+      <fieldset class="reg-block">
+        <legend>Detalles personales</legend>
+        <div class="field-row">
+          <label class="field">
+            <span>Nombre <b>*</b></span>
+            <input type="text" name="nombre" required maxlength="60" />
+          </label>
+          <label class="field">
+            <span>Apellido <b>*</b></span>
+            <input type="text" name="apellido" required maxlength="60" />
+          </label>
+        </div>
+        <div class="field-row">
+          <label class="field">
+            <span>Correo electrónico</span>
+            <input type="email" name="correo" readonly />
+          </label>
+          <label class="field">
+            <span>Número de teléfono <b>*</b></span>
+            <input type="tel" name="telefono" required inputmode="tel" />
+          </label>
+        </div>
+        <label class="field">
+          <span>Género <b>*</b></span>
+          <select name="genero" required>
+            <option value="">Selecciona una opción</option>
+            <option>Masculino</option>
+            <option>Femenino</option>
+            <option>No binario</option>
+            <option>Otro</option>
+            <option>Prefiero no decirlo</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <fieldset class="reg-block">
+        <legend>Información académica</legend>
+        <div class="field-row">
+          <label class="field">
+            <span>Universidad o escuela <b>*</b></span>
+            <input type="text" name="universidad" required maxlength="100" />
+          </label>
+          <label class="field">
+            <span>Carrera o área de estudio <b>*</b></span>
+            <input type="text" name="carrera" required maxlength="100" />
+          </label>
+        </div>
+        <div class="field-row">
+          <label class="field">
+            <span>Año de graduación <b>*</b></span>
+            <select name="graduacion" required>
+              <option value="">Selecciona un año</option>
+              <option>2027</option><option>2028</option><option>2029</option>
+              <option>2030</option><option>2031</option><option>2032</option>
+              <option>2033</option><option>2034 o después</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Nivel de estudios <b>*</b></span>
+            <select name="nivel" required>
+              <option value="">Selecciona un nivel</option>
+              <option>Preparatoria / Bachillerato</option>
+              <option>Licenciatura (1er año)</option>
+              <option>Licenciatura (2do año)</option>
+              <option>Licenciatura (3er año o más)</option>
+              <option>Maestría</option>
+              <option>Doctorado</option>
+              <option>Egresado reciente</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="reg-block">
+        <legend>Preferencias del evento</legend>
+        <div class="field-row">
+          <label class="field">
+            <span>Talla de playera <b>*</b></span>
+            <select name="talla" required>
+              <option value="">Selecciona una talla</option>
+              <option>Extra chica (XS)</option>
+              <option>Chica (S)</option>
+              <option>Mediana (M)</option>
+              <option>Grande (L)</option>
+              <option>Extra grande (XL)</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Restricciones alimenticias</span>
+            <input type="text" name="dieta" maxlength="120" />
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="reg-block">
+        <legend>Enlaces y redes</legend>
+        <div class="field-row">
+          <label class="field">
+            <span>URL de GitHub <b>*</b></span>
+            <input type="url" name="github" required />
+          </label>
+          <label class="field">
+            <span>URL de Devpost</span>
+            <input type="url" name="devpost" />
+          </label>
+        </div>
+        <div class="field-row">
+          <label class="field">
+            <span>URL de LinkedIn</span>
+            <input type="url" name="linkedin" />
+          </label>
+          <label class="field">
+            <span>URL de sitio web personal</span>
+            <input type="url" name="sitio" />
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="reg-actions">
+        <button type="submit" class="btn btn-submit">Guardar cambios</button>
+        <p class="reg-note" id="perfilNote"></p>
+        <p class="auth-link"><a href="index.html">Volver al inicio</a></p>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <div class="f-logo">🐯 TIGRE HACK '27 · UANL</div>
+    <p>© 2027 Tigre Hack — Universidad Autónoma de Nuevo León. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script>
+    setupMobileMenu();
+
+    const user = currentUser();
+    if (!user) window.location.replace("login.html");
+
+    const perfilForm = document.getElementById("perfilForm");
+    const perfilNote = document.getElementById("perfilNote");
+
+    document.getElementById("perfilSub").textContent =
+      `Hola ${user.nombre}, aquí están tus datos guardados. Edita lo que necesites.`;
+
+    perfilForm.querySelectorAll("input, select").forEach((input) => {
+      if (user[input.name] !== undefined) input.value = user[input.name];
+    });
+
+    perfilForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      perfilNote.className = "reg-note";
+      perfilNote.textContent = "";
+
+      if (!perfilForm.checkValidity()) {
+        perfilForm.querySelector(":invalid").focus();
+        perfilNote.textContent = "Revisa los campos marcados con *";
+        return;
+      }
+
+      const datos = {};
+      perfilForm.querySelectorAll("input, select").forEach((input) => {
+        if (input.name !== "correo") datos[input.name] = input.value.trim();
+      });
+
+      updateUser(datos);
+      perfilNote.className = "reg-note ok";
+      perfilNote.textContent = "Cambios guardados correctamente.";
+    });
+
+    function cerrarSesion(e) {
+      e.preventDefault();
+      logout();
+      window.location.href = "index.html";
+    }
+    document.getElementById("logoutBtn").addEventListener("click", cerrarSesion);
+    document.getElementById("logoutBtnMobile").addEventListener("click", cerrarSesion);
+  </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+/* Estilos solo para celular */
+@media (max-width: 768px) {
+  nav { padding: 0.6rem 1rem; }
+  .nav-logo { height: 42px; }
+  .nav-links,
+  .nav-right { display: none; }
+
+  .menu-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 220;
+  }
+  .menu-btn span {
+    display: block;
+    height: 2px;
+    background: var(--yellow);
+    border-radius: 2px;
+  }
+  .menu-btn span + span { margin-top: 6px; }
+  body.menu-open .menu-btn span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  body.menu-open .menu-btn span:nth-child(2) { opacity: 0; }
+  body.menu-open .menu-btn span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  body.menu-open { overflow: hidden; }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 190;
+    background: #050505;
+    padding: 5.5rem 1.5rem 2rem;
+    flex-direction: column;
+  }
+  body.menu-open .mobile-menu { display: flex; }
+  .mobile-menu a {
+    font-size: 1.35rem;
+    font-weight: 400;
+    font-family: "Russo One", Impact, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 195, 0, 0.25);
+    color: #fff;
+  }
+  .mobile-menu a.active { color: #ffc300; }
+  .mobile-menu .mobile-register {
+    margin-top: 1.5rem;
+    text-align: center;
+    background: #ffc300;
+    color: #050505;
+    border: 0;
+    border-radius: 0;
+    padding: 0.85rem 1.5rem;
+    font-family: "Russo One", Impact, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    box-shadow: 6px 6px 0 #2e3192;
+  }
+
+  .hero {
+    min-height: 100svh;
+    justify-content: flex-start;
+    padding: 4.8rem 1rem 3.2rem;
+  }
+  .hero-logo { width: min(320px, 88vw); margin: 0 auto -0.35rem; }
+  .hero-sub {
+    font-size: 1.05rem;
+    margin: 0 auto 0.15rem;
+    max-width: 92vw;
+  }
+  .hero-acts { margin: 0.1rem auto 0.5rem; }
+
+  .countdown { gap: 1.2rem; }
+  .count-num { font-size: 3.1rem; }
+  .count-sep { display: none; }
+  .count-label { font-size: 0.78rem; }
+
+  section { padding: 3.5rem 1.15rem; }
+  .s-title { font-size: 1.7rem; }
+  .s-sub { margin-bottom: 1.75rem; font-size: 0.92rem; margin-left: auto; margin-right: auto; }
+
+  .stat-strip {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 0.5rem;
+    padding: 1.5rem 1rem;
+    margin-bottom: 2rem;
+  }
+  .stat-num { font-size: 2.1rem; }
+  .stat-plus { font-size: 1.3rem; }
+  .stat-lbl { font-size: 0.62rem; margin-top: 0.35rem; }
+
+  .respaldo { margin-top: 2.25rem; padding-top: 1.75rem; }
+  .respaldo-title { font-size: 0.75rem; margin-bottom: 1.5rem; }
+  .respaldo-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+  .respaldo-item { gap: 0.85rem; }
+  .respaldo-icon { font-size: 1.5rem; }
+  .respaldo-item h4 { font-size: 0.95rem; }
+  .respaldo-item p { font-size: 0.85rem; }
+
+  .about-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .about-extra {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2.25rem;
+    padding-top: 1.75rem;
+  }
+  .extra-num { font-size: 2.4rem; margin-bottom: 0.35rem; }
+  .extra-item p { font-size: 0.88rem; }
+  .card { padding: 1.4rem; }
+  .card .icon { font-size: 1.4rem; width: 48px; height: 48px; }
+  .card h3 { font-size: 1.05rem; }
+  .card p { font-size: 0.88rem; }
+
+  .tracks-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .track { padding: 1.25rem 0.7rem; }
+  .track .icon { font-size: 1.3rem; width: 44px; height: 44px; }
+  .track h3 { font-size: 0.82rem; }
+  .track p { font-size: 0.72rem; }
+
+  .day-tabs { max-width: none; }
+  .day-tab { padding: 0.7rem 0.3rem 0.8rem; }
+  .dt-num { font-size: 1.55rem; }
+  body.page-logo .schedule { padding-bottom: 4rem; }
+  body.page-logo .sponsors { padding-top: 5rem; }
+  .t-body h3 { font-size: 0.95rem; }
+  .t-body p { font-size: 0.82rem; }
+
+  .sponsors .s-sub { margin: 0 auto 1.75rem; }
+  .sponsors-row { gap: 0.8rem; }
+  .sp-box { width: 42%; height: 70px; }
+
+  .faq-list { gap: 0.7rem; }
+  .faq-q { padding: 1rem 1rem; font-size: 0.92rem; }
+  .faq-a { padding: 0 1rem 1rem; font-size: 0.86rem; }
+
+  .cta { padding: 4rem 1.15rem; }
+  .cta .s-sub { margin-bottom: 1.5rem; }
+  .btn {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.85rem 1.8rem;
+    font-size: 1.2rem;
+  }
+
+  footer { padding: 2rem 1.15rem; }
+  .f-logo { font-size: 1rem; }
+}
+
+@media (max-width: 380px) {
+  .tracks-grid { grid-template-columns: 1fr; }
+  .count-num { font-size: 2.6rem; }
+  .sp-box { width: 100%; }
+}

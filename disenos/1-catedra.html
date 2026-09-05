@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dirección 1 · Cátedra — Tigre Hack '27</title>
+<link rel="icon" type="image/png" href="../logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* ==========================================================
+   DIRECCIÓN 1 — "CÁTEDRA"
+   Editorial impreso. Papel, tinta y un sello de oro viejo.
+   La universidad de 90 años hablándole a sus estudiantes.
+   ========================================================== */
+:root{
+  --papel:#f4f1ea;
+  --papel-2:#eae4d7;
+  --tinta:#0a2342;
+  --tinta-70:rgba(10,35,66,.7);
+  --tinta-45:rgba(10,35,66,.45);
+  --regla:rgba(10,35,66,.18);
+  --azul:#003087;
+  --oro:#9c7c1f;
+  --oro-claro:#c9a94a;
+  --serif:"DM Serif Display",Georgia,"Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{max-width:100%;overflow-x:hidden}
+body{
+  background:var(--papel);
+  color:var(--tinta);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.6;
+  /* Textura sutil de papel */
+  background-image:radial-gradient(rgba(10,35,66,.035) 1px,transparent 1px);
+  background-size:3px 3px;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 2rem}
+
+/* Etiqueta de sección numerada, como índice de libro */
+.kicker{
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--oro);
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  margin-bottom:1.5rem;
+}
+.kicker::after{content:"";flex:1;height:1px;background:var(--regla)}
+
+h1,h2,h3,.serif{font-family:var(--serif);font-weight:400;line-height:1.08;letter-spacing:-.01em}
+.h-sec{font-size:clamp(2.1rem,4.6vw,3.4rem);margin-bottom:1rem}
+.h-sec em{font-style:italic;color:var(--oro)}
+.lede{font-size:1.05rem;color:var(--tinta-70);max-width:60ch;line-height:1.7}
+
+/* ---------- NAVEGACIÓN ---------- */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(244,241,234,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--regla);
+}
+.nav-in{max-width:1180px;margin:0 auto;padding:.85rem 2rem;display:flex;align-items:center;gap:2rem}
+.nav-mark{display:flex;align-items:center;gap:.7rem;flex-shrink:0}
+.nav-mark .seal{width:34px;height:34px}
+.nav-mark b{font-family:var(--serif);font-size:1.05rem;font-weight:400;letter-spacing:0}
+.nav-links{display:flex;gap:1.75rem;margin-left:auto}
+.nav-links a{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--tinta-70);padding-bottom:2px;
+  border-bottom:1px solid transparent;transition:.2s;
+}
+.nav-links a:hover{color:var(--tinta);border-bottom-color:var(--oro)}
+.nav-act{display:flex;align-items:center;gap:1.1rem}
+.nav-act .login{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-70)}
+.btn{
+  display:inline-block;font-family:var(--mono);font-size:.74rem;
+  letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+  background:var(--tinta);color:var(--papel);
+  padding:.7rem 1.4rem;border:1px solid var(--tinta);transition:.2s;
+}
+.btn:hover{background:var(--oro);border-color:var(--oro);color:#fff}
+.btn-ghost{background:transparent;color:var(--tinta)}
+.btn-ghost:hover{background:var(--tinta);color:var(--papel)}
+.btn-lg{font-size:.85rem;padding:1rem 2.4rem}
+
+/* ---------- HERO ---------- */
+.hero{padding:5rem 0 4rem;border-bottom:1px solid var(--regla)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:4rem;align-items:center}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--oro);margin-bottom:1.5rem;
+}
+.hero h1{font-size:clamp(3.2rem,8.5vw,6.4rem);margin-bottom:.4rem}
+.hero h1 .yr{font-style:italic;color:var(--oro)}
+.hero-rule{height:1px;background:var(--tinta);margin:1.6rem 0;opacity:.85}
+.hero-sub{font-size:1.12rem;color:var(--tinta-70);max-width:46ch;line-height:1.65}
+.hero-cta{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin-top:2.2rem}
+.hero-note{font-family:var(--mono);font-size:.74rem;color:var(--tinta-45);letter-spacing:.06em}
+
+/* El sello: el tigre como emblema grabado */
+.seal-big{width:min(360px,100%);margin:0 auto;display:block}
+.seal-cap{
+  text-align:center;font-family:var(--mono);font-size:.68rem;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--tinta-45);margin-top:1rem;
+}
+
+/* Cuenta regresiva: tabla tipográfica, no cronómetro */
+.count{display:flex;border-top:1px solid var(--tinta);border-bottom:1px solid var(--regla);margin-top:3rem}
+.count-b{flex:1;padding:1.1rem 0 .9rem;border-right:1px solid var(--regla);text-align:center}
+.count-b:last-child{border-right:0}
+.count-n{font-family:var(--serif);font-size:clamp(1.9rem,4.2vw,2.9rem);line-height:1;font-variant-numeric:tabular-nums}
+.count-l{font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tinta-45);margin-top:.45rem}
+.count-b[hidden]{display:none}
+
+/* ---------- ACERCA ---------- */
+section{padding:5.5rem 0;border-bottom:1px solid var(--regla)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+
+/* Cifras al estilo de un anuario */
+.figs{display:grid;grid-template-columns:repeat(4,1fr);margin-top:3.5rem;border-top:1px solid var(--tinta)}
+.fig{padding:1.8rem 1.2rem;border-right:1px solid var(--regla)}
+.fig:last-child{border-right:0}
+.fig-n{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.6rem);line-height:1;color:var(--tinta)}
+.fig-n sup{font-size:.42em;vertical-align:super;color:var(--oro)}
+.fig-l{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-45);margin-top:.6rem;line-height:1.5}
+
+/* Los seis puntos de valor: entradas de índice, no tarjetas */
+.entries{margin-top:4rem;border-top:1px solid var(--regla)}
+.entry{
+  display:grid;grid-template-columns:4rem 1fr 1.1fr;gap:2rem;
+  padding:1.7rem 0;border-bottom:1px solid var(--regla);align-items:baseline;
+  transition:background .25s,padding-left .25s;
+}
+.entry:hover{background:rgba(156,124,31,.07);padding-left:.8rem}
+.entry-n{font-family:var(--mono);font-size:.74rem;color:var(--oro);letter-spacing:.1em}
+.entry h3{font-size:1.35rem}
+.entry p{color:var(--tinta-70);font-size:.95rem}
+
+/* Respaldo institucional */
+.respaldo{margin-top:4.5rem;padding-top:2.5rem;border-top:2px solid var(--tinta)}
+.respaldo-h{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--oro);margin-bottom:2rem}
+.respaldo-g{display:grid;grid-template-columns:repeat(4,1fr);gap:2.5rem}
+.respaldo-g h4{font-family:var(--serif);font-size:1.12rem;margin-bottom:.5rem;line-height:1.25}
+.respaldo-g p{font-size:.88rem;color:var(--tinta-70);line-height:1.6}
+
+/* ---------- TRACKS ---------- */
+.tracks-g{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--tinta);margin-top:2.5rem}
+.trk{padding:2.2rem 1.6rem 2.6rem;border-right:1px solid var(--regla);transition:background .25s}
+.trk:last-child{border-right:0}
+.trk:hover{background:var(--papel-2)}
+.trk-n{font-family:var(--mono);font-size:.7rem;color:var(--oro);letter-spacing:.16em;margin-bottom:1.6rem}
+.trk h3{font-size:1.45rem;margin-bottom:.6rem}
+.trk p{font-size:.9rem;color:var(--tinta-70)}
+
+/* ---------- HORARIO: un cuadro de horas impreso ---------- */
+.days{display:flex;gap:2.5rem;margin:2.5rem 0 0;border-bottom:1px solid var(--tinta)}
+.day{
+  background:none;border:0;cursor:pointer;font-family:var(--mono);
+  font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--tinta-45);padding:0 0 .9rem;position:relative;transition:color .2s;
+}
+.day::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--oro);transform:scaleX(0);transform-origin:left;transition:transform .28s}
+.day:hover{color:var(--tinta)}
+.day.on{color:var(--tinta)}
+.day.on::after{transform:scaleX(1)}
+.sched[hidden]{display:none}
+.row{
+  display:grid;grid-template-columns:9.5rem 1fr;gap:2rem;
+  padding:1.4rem 0;border-bottom:1px solid var(--regla);align-items:baseline;
+}
+.row .t{font-family:var(--mono);font-size:.84rem;color:var(--tinta-70);letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.row h3{font-size:1.22rem;margin-bottom:.25rem}
+.row p{font-size:.9rem;color:var(--tinta-70)}
+/* Los cuatro momentos clave llevan filete de oro */
+.row.key{background:linear-gradient(90deg,rgba(201,169,74,.16),transparent 65%);margin:0 -1.2rem;padding-left:1.2rem;padding-right:1.2rem}
+.row.key .t{color:var(--oro);font-weight:600}
+.row.key h3{position:relative}
+.row.key h3::before{content:"❯";position:absolute;left:-1.15rem;color:var(--oro);font-size:.7em;top:.18em}
+
+/* ---------- PATROCINADORES ---------- */
+.sp-lead{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap}
+.sp-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.8rem}
+.sp{
+  aspect-ratio:16/7;border:1px dashed rgba(10,35,66,.32);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;
+  transition:.25s;
+}
+.sp:hover{border-color:var(--oro);background:rgba(201,169,74,.08)}
+.sp span{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--tinta-45)}
+.sp b{font-family:var(--serif);font-weight:400;font-size:1.15rem;color:var(--tinta-70)}
+
+/* ---------- PREGUNTAS ---------- */
+.faq{border-top:1px solid var(--tinta);margin-top:2.5rem}
+.q{border-bottom:1px solid var(--regla)}
+.q summary{
+  cursor:pointer;list-style:none;padding:1.5rem 2.5rem 1.5rem 0;position:relative;
+  font-family:var(--serif);font-size:1.3rem;
+}
+.q summary::-webkit-details-marker{display:none}
+.q summary::after{
+  content:"+";position:absolute;right:.25rem;top:1.25rem;
+  font-family:var(--mono);font-size:1.3rem;color:var(--oro);transition:transform .25s;
+}
+.q[open] summary::after{content:"–"}
+.q p{padding:0 4rem 1.7rem 0;color:var(--tinta-70);max-width:70ch}
+
+/* ---------- CIERRE ---------- */
+.close{background:var(--tinta);color:var(--papel);text-align:center;border:0}
+.close h2{font-size:clamp(2.4rem,6vw,4.4rem);color:var(--papel)}
+.close h2 em{font-style:italic;color:var(--oro-claro)}
+.close p{color:rgba(244,241,234,.7);max-width:52ch;margin:1.2rem auto 2.6rem}
+.close .btn{background:var(--oro-claro);border-color:var(--oro-claro);color:var(--tinta)}
+.close .btn:hover{background:var(--papel);border-color:var(--papel)}
+footer{padding:3rem 0;text-align:center}
+footer .f-mark{font-family:var(--serif);font-size:1.1rem;margin-bottom:.8rem}
+footer small{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--tinta-45)}
+
+@media (max-width:900px){
+  .wrap{padding:0 1.25rem}
+  .nav-in{padding:.7rem 1.25rem;gap:1rem}
+  .nav-links{display:none}
+  .hero{padding:3rem 0 2.5rem}
+  .hero-grid{grid-template-columns:1fr;gap:2.5rem}
+  .seal-big{width:min(230px,60%)}
+  .two-col{grid-template-columns:1fr;gap:2rem}
+  section{padding:3.5rem 0}
+  .figs{grid-template-columns:1fr 1fr}
+  .fig{border-bottom:1px solid var(--regla)}
+  .fig:nth-child(2){border-right:0}
+  .entry{grid-template-columns:2.5rem 1fr;gap:1rem}
+  .entry p{grid-column:2}
+  .respaldo-g{grid-template-columns:1fr 1fr;gap:1.75rem}
+  .tracks-g{grid-template-columns:1fr 1fr}
+  .trk:nth-child(2){border-right:0}
+  .trk:nth-child(-n+2){border-bottom:1px solid var(--regla)}
+  .days{gap:1.4rem;overflow-x:auto}
+  .row{grid-template-columns:1fr;gap:.35rem}
+  .sp-g{grid-template-columns:1fr 1fr;gap:1rem}
+  .count-n{font-size:1.6rem}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- El tigre como sello grabado: se define una vez y se reutiliza -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="sello" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="96" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="100" cy="100" r="88" fill="none" stroke="currentColor" stroke-width="3"/>
+    <circle cx="100" cy="100" r="72" fill="none" stroke="currentColor" stroke-width="1" opacity=".45"/>
+    <!-- orejas -->
+    <path d="M62 74 C56 54, 62 44, 78 44 C74 52, 72 62, 72 70 Z" fill="currentColor"/>
+    <path d="M138 74 C144 54, 138 44, 122 44 C126 52, 128 62, 128 70 Z" fill="currentColor"/>
+    <!-- cabeza -->
+    <path d="M100 52 C126 52, 142 70, 142 96 C142 126, 124 148, 100 148 C76 148, 58 126, 58 96 C58 70, 74 52, 100 52 Z"
+          fill="none" stroke="currentColor" stroke-width="3"/>
+    <!-- rayas -->
+    <path d="M70 74 L84 82 M66 88 L80 92 M66 102 L80 100" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    <path d="M130 74 L116 82 M134 88 L120 92 M134 102 L120 100" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    <!-- ojos -->
+    <path d="M78 96 L92 96 L85 106 Z" fill="currentColor"/>
+    <path d="M108 96 L122 96 L115 106 Z" fill="currentColor"/>
+    <!-- hocico -->
+    <path d="M92 118 L108 118 L100 127 Z" fill="currentColor"/>
+    <path d="M100 127 L100 134 M100 134 C94 134, 90 131, 88 128 M100 134 C106 134, 110 131, 112 128"
+          stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <!-- bigotes -->
+    <path d="M84 124 L64 120 M84 129 L66 131 M116 124 L136 120 M116 129 L134 131"
+          stroke="currentColor" stroke-width="1.5" opacity=".65" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<nav>
+  <div class="nav-in">
+    <a href="#" class="nav-mark">
+      <svg class="seal" style="color:var(--tinta)"><use href="#sello"/></svg>
+      <b>Tigre Hack</b>
+    </a>
+    <div class="nav-links">
+      <a href="#acerca">Acerca de</a>
+      <a href="#horario">Horario</a>
+      <a href="#patrocinadores">Patrocinadores</a>
+      <a href="#tracks">Tracks</a>
+      <a href="#preguntas">Preguntas</a>
+    </div>
+    <div class="nav-act">
+      <a href="#" class="login">Iniciar sesión</a>
+      <a href="#registro" class="btn">Registro</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-eyebrow">Universidad Autónoma de Nuevo León · Monterrey</div>
+      <h1>Tigre Hack <span class="yr">'27</span></h1>
+      <div class="hero-rule"></div>
+      <p class="hero-sub">Treinta y seis horas continuas para construir, de viernes a domingo. 16, 17 y 18 de abril de 2027.</p>
+      <div class="hero-cta">
+        <a href="#registro" class="btn btn-lg">Registrarme</a>
+        <span class="hero-note">Gratis · Cupo limitado</span>
+      </div>
+      <div class="count" id="count">
+        <div class="count-b" id="b-mes"><div class="count-n" id="c-mes">00</div><div class="count-l">Meses</div></div>
+        <div class="count-b"><div class="count-n" id="c-dia">00</div><div class="count-l">Días</div></div>
+        <div class="count-b"><div class="count-n" id="c-hor">00</div><div class="count-l">Horas</div></div>
+        <div class="count-b"><div class="count-n" id="c-min">00</div><div class="count-l">Minutos</div></div>
+        <div class="count-b"><div class="count-n" id="c-seg">00</div><div class="count-l">Segundos</div></div>
+      </div>
+    </div>
+    <div>
+      <svg class="seal-big" viewBox="0 0 200 200" style="color:var(--tinta)"><use href="#sello"/></svg>
+      <div class="seal-cap">MMXXVII · Nuevo León</div>
+    </div>
+  </div>
+</header>
+
+<section id="acerca">
+  <div class="wrap">
+    <div class="kicker">01 — Acerca de</div>
+    <div class="two-col">
+      <h2 class="h-sec">Un hackathon <em>universitario</em>, con todo lo que eso implica.</h2>
+      <p class="lede">Tigre Hack es el hackathon de la UANL. Treinta y seis horas seguidas en las que equipos de hasta cuatro personas construyen un proyecto tecnológico desde cero y lo presentan ante un jurado de la industria. No necesitas experiencia previa ni pagar nada.</p>
+    </div>
+
+    <div class="figs">
+      <div class="fig"><div class="fig-n">500<sup>+</sup></div><div class="fig-l">Hackers esperados</div></div>
+      <div class="fig"><div class="fig-n">20<sup>+</sup></div><div class="fig-l">Empresas aliadas</div></div>
+      <div class="fig"><div class="fig-n">40<sup>+</sup></div><div class="fig-l">Mentores y jueces</div></div>
+      <div class="fig"><div class="fig-n">100<sup>K</sup></div><div class="fig-l">MXN en premios</div></div>
+    </div>
+
+    <div class="entries">
+      <div class="entry"><div class="entry-n">I</div><h3>Construyes algo real</h3><p>Eliges un reto, formas tu equipo y desarrollas una solución funcional en 36 horas.</p></div>
+      <div class="entry"><div class="entry-n">II</div><h3>Workshops y mentorías</h3><p>Talleres prácticos y mentores de la industria que te ayudan a desatorarte.</p></div>
+      <div class="entry"><div class="entry-n">III</div><h3>Demo Day</h3><p>Presentas en vivo ante un jurado de profesores y profesionales del sector.</p></div>
+      <div class="entry"><div class="entry-n">IV</div><h3>Networking</h3><p>Cientos de estudiantes de distintas facultades y empresas buscando talento.</p></div>
+      <div class="entry"><div class="entry-n">V</div><h3>Todo incluido</h3><p>Comida, café, internet, espacio de trabajo y swag. No pagas nada por participar.</p></div>
+      <div class="entry"><div class="entry-n">VI</div><h3>Premios</h3><p>Más de $100,000 MXN, además de becas y oportunidades con los patrocinadores.</p></div>
+    </div>
+
+    <div class="respaldo">
+      <div class="respaldo-h">Respaldado por</div>
+      <div class="respaldo-g">
+        <div><h4>Universidad Autónoma de Nuevo León</h4><p>Más de 220,000 estudiantes y 90 años formando al talento del noreste de México.</p></div>
+        <div><h4>Sede en Monterrey</h4><p>El principal polo industrial y tecnológico del país, con presencia de empresas globales.</p></div>
+        <div><h4>Vinculación con la industria</h4><p>Los proyectos se evalúan frente a reclutadores y líderes técnicos del sector.</p></div>
+        <div><h4>Convocatoria nacional</h4><p>Abierto a estudiantes de cualquier universidad de México, sin costo de inscripción.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tracks">
+  <div class="wrap">
+    <div class="kicker">02 — Tracks</div>
+    <h2 class="h-sec">Cuatro <em>frentes</em> de competencia.</h2>
+    <div class="tracks-g">
+      <div class="trk"><div class="trk-n">TR—01</div><h3>Inteligencia Artificial</h3><p>Aprendizaje automático, lenguaje natural y visión por computadora.</p></div>
+      <div class="trk"><div class="trk-n">TR—02</div><h3>Sustentabilidad</h3><p>Tecnología verde y soluciones para el impacto ambiental.</p></div>
+      <div class="trk"><div class="trk-n">TR—03</div><h3>Salud</h3><p>Innovación clínica, prevención y bienestar.</p></div>
+      <div class="trk"><div class="trk-n">TR—04</div><h3>Educación</h3><p>Herramientas para enseñar y aprender mejor.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="horario">
+  <div class="wrap">
+    <div class="kicker">03 — Horario</div>
+    <h2 class="h-sec">De viernes a domingo, <em>sin pausa</em>.</h2>
+    <p class="lede">El reloj corre desde las 7:30 PM del viernes hasta las 7:30 AM del domingo. Todo lo demás está diseñado alrededor de esas 36 horas.</p>
+
+    <div class="days" role="tablist">
+      <button class="day on" data-d="v" role="tab">Viernes 16</button>
+      <button class="day" data-d="s" role="tab">Sábado 17</button>
+      <button class="day" data-d="d" role="tab">Domingo 18</button>
+    </div>
+
+    <div class="sched" id="d-v">
+      <div class="row"><div class="t">5:00 – 7:00 PM</div><div><h3>Check-in y registro</h3><p>Dos horas para llegar sin prisas: gafete, kit de bienvenida e instalación.</p></div></div>
+      <div class="row"><div class="t">7:00 – 7:30 PM</div><div><h3>Charla de apertura</h3><p>Treinta minutos: bienvenida, retos, premios y reglas.</p></div></div>
+      <div class="row key"><div class="t">7:30 PM</div><div><h3>Arranca el hacking</h3><p>Empiezan las 36 horas oficiales. El reloj no se detiene.</p></div></div>
+      <div class="row"><div class="t">9:00 PM</div><div><h3>Cena</h3><p>Primera recarga sin parar el reloj.</p></div></div>
+      <div class="row"><div class="t">11:00 PM</div><div><h3>Workshop: del cero al deploy</h3><p>Publica tu primer prototipo en menos de una hora.</p></div></div>
+      <div class="row"><div class="t">1:00 AM</div><div><h3>Snack nocturno</h3><p>Café y algo caliente para los que aguantan.</p></div></div>
+    </div>
+
+    <div class="sched" id="d-s" hidden>
+      <div class="row"><div class="t">10:00 AM</div><div><h3>Desayuno</h3><p>Para los que durmieron y para los que no.</p></div></div>
+      <div class="row"><div class="t">11:30 AM</div><div><h3>Workshops de patrocinadores</h3><p>Sesiones técnicas con las empresas que traen los retos.</p></div></div>
+      <div class="row"><div class="t">12:30 PM</div><div><h3>Mentorías 1 a 1</h3><p>Bloques agendados con mentores de industria y profesores.</p></div></div>
+      <div class="row"><div class="t">2:00 PM</div><div><h3>Comida</h3><p>Pausa obligatoria. Sal de la silla.</p></div></div>
+      <div class="row key"><div class="t">4:00 PM</div><div><h3>Checkpoint de avance</h3><p>Enseña tu progreso a un mentor y corrige a tiempo.</p></div></div>
+      <div class="row"><div class="t">6:30 PM</div><div><h3>Charla: cómo presentar tu proyecto</h3><p>Pitch en tres minutos sin arruinar 36 horas de trabajo.</p></div></div>
+      <div class="row"><div class="t">9:00 PM</div><div><h3>Cena</h3><p>Última recarga fuerte antes del sprint final.</p></div></div>
+      <div class="row"><div class="t">11:00 PM</div><div><h3>Noche de tigres</h3><p>Torneo relámpago y dinámicas para despejarte.</p></div></div>
+    </div>
+
+    <div class="sched" id="d-d" hidden>
+      <div class="row key"><div class="t">7:30 AM</div><div><h3>Cierre de código</h3><p>Se cumplen las 36 horas. Entrega repositorio, video y presentación.</p></div></div>
+      <div class="row"><div class="t">8:00 AM</div><div><h3>Ensayo libre</h3><p>Monta tu stand y practica el pitch.</p></div></div>
+      <div class="row"><div class="t">10:00 AM</div><div><h3>Desayuno</h3><p>Ya la libraste. Come antes de presentar.</p></div></div>
+      <div class="row"><div class="t">10:30 AM</div><div><h3>Ronda de jueces</h3><p>Expo por mesas: los jueces pasan a ver la demo en vivo.</p></div></div>
+      <div class="row"><div class="t">12:30 PM</div><div><h3>Pitch de finalistas</h3><p>Los mejores equipos presentan en el escenario principal.</p></div></div>
+      <div class="row"><div class="t">2:00 PM</div><div><h3>Comida</h3><p>Comemos juntos mientras delibera el jurado.</p></div></div>
+      <div class="row key"><div class="t">3:30 PM</div><div><h3>Premiación y clausura</h3><p>Ganadores generales, premios por reto y menciones especiales.</p></div></div>
+      <div class="row"><div class="t">4:30 PM</div><div><h3>Foto grupal y despedida</h3><p>Nos llevamos la foto y tú te llevas el proyecto.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="patrocinadores">
+  <div class="wrap">
+    <div class="kicker">04 — Patrocinadores</div>
+    <div class="sp-lead">
+      <h2 class="h-sec" style="margin:0">Seis lugares, <em>ninguno tomado</em>.</h2>
+      <a href="#" class="btn btn-ghost">Solicitar dossier</a>
+    </div>
+    <div class="sp-g">
+      <div class="sp"><span>Nivel Oro</span><b>Espacio disponible</b></div>
+      <div class="sp"><span>Nivel Oro</span><b>Espacio disponible</b></div>
+      <div class="sp"><span>Nivel Plata</span><b>Espacio disponible</b></div>
+      <div class="sp"><span>Nivel Plata</span><b>Espacio disponible</b></div>
+      <div class="sp"><span>Nivel Bronce</span><b>Espacio disponible</b></div>
+      <div class="sp"><span>Nivel Bronce</span><b>Espacio disponible</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="preguntas">
+  <div class="wrap">
+    <div class="kicker">05 — Preguntas</div>
+    <h2 class="h-sec">Lo que <em>siempre</em> nos preguntan.</h2>
+    <div class="faq">
+      <details class="q" open><summary>¿Quién puede participar?</summary><p>Cualquier estudiante universitario activo en México. No necesitas experiencia previa: el evento está diseñado para que alguien que nunca ha ido a un hackathon pueda terminar con un proyecto.</p></details>
+      <details class="q"><summary>¿Cuánto cuesta participar?</summary><p>Nada. Incluye comida, bebidas, café, internet, espacio de trabajo, swag y acceso a todos los workshops.</p></details>
+      <details class="q"><summary>¿Necesito un equipo?</summary><p>El registro es individual, pero debes formar tu propio equipo de hasta cuatro personas antes del evento.</p></details>
+      <details class="q"><summary>¿Qué debo llevar?</summary><p>Tu laptop, cargador y ganas. Nosotros ponemos la comida, el internet, el espacio y el café.</p></details>
+      <details class="q"><summary>¿Dónde será el evento?</summary><p>En las instalaciones de la UANL, en Monterrey, Nuevo León. La ubicación exacta se comparte al confirmar tu registro.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="close" id="registro">
+  <div class="wrap">
+    <h2>¿Listo para <em>hackear</em>?</h2>
+    <p>Únete a cientos de estudiantes y construye algo real en 36 horas. El registro toma cinco minutos y es completamente gratis.</p>
+    <a href="#" class="btn btn-lg">Registrarme ahora</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-mark">Tigre Hack '27 · UANL</div>
+    <small>Instagram · X · LinkedIn — Monterrey, Nuevo León</small>
+  </div>
+</footer>
+
+<script>
+const META = new Date("2027-04-16T17:00:00");
+const p = n => String(n).padStart(2,"0");
+const bMes = document.getElementById("b-mes");
+function meses(a,b){
+  let m=(b.getFullYear()-a.getFullYear())*12+(b.getMonth()-a.getMonth());
+  const t=new Date(a); t.setMonth(t.getMonth()+m);
+  if(t>b) m--;
+  return Math.max(0,m);
+}
+function tick(){
+  const now=new Date();
+  if(META-now<=0) return;
+  const m=meses(now,META);
+  const base=new Date(now); base.setMonth(base.getMonth()+m);
+  const r=META-base;
+  bMes.hidden = m===0;
+  document.getElementById("c-mes").textContent=p(m);
+  document.getElementById("c-dia").textContent=p(Math.floor(r/864e5));
+  document.getElementById("c-hor").textContent=p(Math.floor(r%864e5/36e5));
+  document.getElementById("c-min").textContent=p(Math.floor(r%36e5/6e4));
+  document.getElementById("c-seg").textContent=p(Math.floor(r%6e4/1e3));
+}
+tick(); setInterval(tick,1000);
+
+document.querySelectorAll(".day").forEach(b=>{
+  b.addEventListener("click",()=>{
+    document.querySelectorAll(".day").forEach(o=>{
+      const on=o===b;
+      o.classList.toggle("on",on);
+      document.getElementById("d-"+o.dataset.d).hidden=!on;
+    });
+  });
+});
+</script>
+</body>
+</html>

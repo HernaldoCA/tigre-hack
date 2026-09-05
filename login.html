@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar sesión — Tigre Hack '27</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/laptop.css" />
+  <link rel="stylesheet" href="css/celular.css" />
+  <link rel="stylesheet" href="css/tigre.css" />
+  <link rel="stylesheet" href="css/registro.css" />
+</head>
+<body class="page-logo">
+  <div class="tiger-bg"></div>
+
+  <nav>
+    <div class="nav-left">
+      <a href="index.html"><img src="logo.png" alt="Tigre Hack" class="nav-logo" /></a>
+      <span class="nav-badge">'27</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="index.html#about">Acerca de</a>
+      <a href="index.html#schedule">Horario</a>
+      <a href="index.html#sponsors">Patrocinadores</a>
+      <a href="index.html#tracks">Tracks</a>
+      <a href="index.html#faq">Preguntas</a>
+    </div>
+    <div class="nav-right">
+      <a href="index.html" class="nav-back">← Volver</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Inicio</a>
+    <a href="index.html#about">Acerca de</a>
+    <a href="index.html#schedule">Horario</a>
+    <a href="index.html#sponsors">Patrocinadores</a>
+    <a href="index.html#tracks">Tracks</a>
+    <a href="index.html#faq">Preguntas</a>
+    <a href="index.html" class="mobile-register">Volver al inicio</a>
+  </div>
+
+  <main class="reg-main auth-main">
+    <div class="reg-head">
+      <h1 class="reg-title">Iniciar <span>sesión</span></h1>
+      <p class="reg-sub">Entra con tu cuenta para ver o editar tu registro.</p>
+    </div>
+
+    <form class="reg-form" id="loginForm" novalidate>
+      <fieldset class="reg-block">
+        <legend>Tus datos</legend>
+        <label class="field">
+          <span>Correo electrónico <b>*</b></span>
+          <input type="email" name="correo" required placeholder="Ej. nombre@ejemplo.com" autocomplete="username" />
+        </label>
+        <label class="field">
+          <span>Contraseña <b>*</b></span>
+          <input type="password" name="password" required placeholder="Tu contraseña" autocomplete="current-password" />
+        </label>
+        <p class="auth-link right"><a href="recuperar.html">¿Olvidaste tu contraseña?</a></p>
+      </fieldset>
+
+      <div class="reg-actions">
+        <button type="submit" class="btn btn-submit">Entrar</button>
+        <p class="reg-note" id="loginNote"></p>
+        <p class="auth-link">¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <div class="f-logo">🐯 TIGRE HACK '27 · UANL</div>
+    <p>© 2027 Tigre Hack — Universidad Autónoma de Nuevo León. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script>
+    setupMobileMenu();
+    if (currentUser()) window.location.replace("perfil.html");
+
+    const loginForm = document.getElementById("loginForm");
+    const loginNote = document.getElementById("loginNote");
+
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      loginNote.textContent = "";
+
+      if (!loginForm.checkValidity()) {
+        loginForm.querySelector(":invalid").focus();
+        loginNote.textContent = "Escribe tu correo y contraseña.";
+        return;
+      }
+
+      const res = await login(loginForm.correo.value, loginForm.password.value);
+      if (!res.ok) {
+        loginNote.textContent = res.error;
+        return;
+      }
+      window.location.href = "perfil.html";
+    });
+  </script>
+</body>
+</html>
