@@ -90,6 +90,18 @@ function setActiveSection(id) {
   });
 }
 
+function navHeight() {
+  const nav = document.querySelector("nav");
+  return nav ? nav.getBoundingClientRect().height : 0;
+}
+
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.scrollY - navHeight();
+  window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+}
+
 document.querySelectorAll('a[href="#home"]').forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
@@ -102,23 +114,66 @@ document.querySelectorAll('a[href="#home"]').forEach((link) => {
 
 sectionNav.forEach((link) => {
   if (link.getAttribute("href") === "#home") return;
-  link.addEventListener("click", () => {
-    setActiveSection(link.getAttribute("href").slice(1));
+  link.addEventListener("click", (e) => {
+    const id = link.getAttribute("href").slice(1);
+    if (id === "schedule") {
+      e.preventDefault();
+      closeMenu();
+      setActiveSection("schedule");
+      scrollToSection("schedule");
+      history.replaceState(null, "", "#schedule");
+      return;
+    }
+    setActiveSection(id);
   });
 });
 
-const dayTabs = document.querySelectorAll(".day-tab");
-dayTabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    dayTabs.forEach((other) => {
-      const on = other === tab;
-      other.classList.toggle("active", on);
-      other.setAttribute("aria-selected", on ? "true" : "false");
-      const day = document.getElementById("day-" + other.dataset.day);
-      day.classList.toggle("is-on", on);
-    });
+const scheduleSection = document.getElementById("schedule");
+const board = scheduleSection?.querySelector(".schedule-board");
+if (scheduleSection && board) {
+  const STEP = 320;
+
+  function maxScroll() {
+    return Math.max(0, board.scrollWidth - board.clientWidth);
+  }
+
+  function atStart() {
+    return board.scrollLeft <= 1;
+  }
+
+  function atEnd() {
+    return board.scrollLeft >= maxScroll() - 1;
+  }
+
+  function scrollTrack(dir) {
+    board.scrollBy({ left: dir * STEP, behavior: "smooth" });
+  }
+
+  window.addEventListener("keydown", (e) => {
+    if (e.target && ["INPUT", "TEXTAREA"].includes(e.target.tagName)) return;
+    const rect = scheduleSection.getBoundingClientRect();
+    if (rect.bottom < 80 || rect.top > window.innerHeight - 80) return;
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      scrollTrack(1);
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      scrollTrack(-1);
+    }
   });
-});
+
+  board.addEventListener(
+    "wheel",
+    (e) => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      if (e.deltaY < 0 && atStart()) return;
+      if (e.deltaY > 0 && atEnd()) return;
+      e.preventDefault();
+      board.scrollLeft += e.deltaY;
+    },
+    { passive: false }
+  );
+}
 
 document.querySelectorAll(".faq-q").forEach((question) => {
   question.addEventListener("click", () => {

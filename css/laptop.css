@@ -23,11 +23,11 @@
     filter: drop-shadow(0 0 40px rgba(255, 195, 0, 0.25));
   }
   .hero-sub {
-    font-size: 1.05rem;
-    max-width: 640px;
-    margin: 0 auto 0.15rem;
+    font-size: 0.95rem;
+    max-width: none;
+    margin: 1.85rem auto 0.85rem;
   }
-  .hero-acts { margin: 0.1rem auto 0.45rem; }
+  .hero-acts { margin: 0 auto 0.6rem; }
 
   .countdown { gap: 2.5rem; }
   .count-num { font-size: 4.5rem; }
@@ -78,25 +78,30 @@
   .tracks-grid { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
   .track { padding: 1.75rem; transition: transform 0.15s, box-shadow 0.15s; }
   .track .icon { font-size: 1.7rem; width: 58px; height: 58px; }
-  .track h3 { font-size: 1rem; }
+  .track h3 { font-size: 0.92rem; }
   .track p { font-size: 0.85rem; }
   .track:hover {
     transform: translate(-3px, -3px);
     box-shadow: 9px 9px 0 #101010;
   }
 
-  .timeline { max-width: 900px; }
-  body.page-logo .schedule { padding-bottom: 6rem; }
-  body.page-logo .sponsors { padding-top: 7rem; }
-  .t-body h3 { font-size: 1.05rem; }
-  .t-body p { font-size: 0.88rem; }
+  .timeline { max-width: 920px; }
+  body.page-logo .schedule .timeline { max-width: none; }
+  body.page-logo .about { padding-bottom: 2.2rem; }
+  body.page-logo .tracks { padding-top: 2.1rem; padding-bottom: 2.1rem; }
+  body.page-logo .schedule { padding: 0; }
+  body.page-logo .schedule-pin { padding: 1.6rem 2rem 1.5rem; }
+  body.page-logo .faq { padding: 6.6rem 2rem 3.5rem; }
+  body.page-logo .sponsors { padding-top: 1.6rem; }
+  .t-body h3 { font-size: 0.95rem; }
+  .t-body p { font-size: 0.76rem; }
 
   .sponsors .s-sub { margin: 0 auto 3rem; }
   .sponsors-row { gap: 2rem; }
   .sp-box { width: 170px; height: 85px; }
   .sp-box:hover { border-color: var(--yellow); opacity: 0.85; }
 
-  .faq-list { max-width: 740px; gap: 0.9rem; margin-left: auto; margin-right: auto; }
+  .faq-list { width: min(52rem, 100%); max-width: min(52rem, 100%); gap: 0.9rem; margin-left: auto; margin-right: auto; }
   .faq-q { padding: 1.1rem 1.4rem; font-size: 0.95rem; }
   .faq-a { padding: 0 1.4rem 1.1rem; font-size: 0.9rem; }
   .faq-item:hover { border-color: rgba(255, 195, 0, 0.25); }

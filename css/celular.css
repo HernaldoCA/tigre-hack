@@ -71,11 +71,12 @@
   }
   .hero-logo { width: min(320px, 88vw); margin: 0 auto -0.35rem; }
   .hero-sub {
-    font-size: 1.05rem;
-    margin: 0 auto 0.15rem;
-    max-width: 92vw;
+    font-size: clamp(0.62rem, 3.1vw, 0.82rem);
+    letter-spacing: 0.01em;
+    margin: 1.35rem auto 0.75rem;
+    max-width: none;
   }
-  .hero-acts { margin: 0.1rem auto 0.5rem; }
+  .hero-acts { margin: 0 auto 0.55rem; }
 
   .countdown { gap: 1.2rem; }
   .count-num { font-size: 3.1rem; }
@@ -127,8 +128,11 @@
   .day-tabs { max-width: none; }
   .day-tab { padding: 0.7rem 0.3rem 0.8rem; }
   .dt-num { font-size: 1.55rem; }
-  body.page-logo .schedule { padding-bottom: 4rem; }
-  body.page-logo .sponsors { padding-top: 5rem; }
+  body.page-logo .about { padding-bottom: 1.8rem; }
+  body.page-logo .tracks { padding-top: 1.8rem; padding-bottom: 1.8rem; }
+  body.page-logo .schedule { padding: 0; }
+  body.page-logo .schedule-pin { padding: 1.2rem 1rem 1.1rem; }
+  body.page-logo .sponsors { padding-top: 1.4rem; }
   .t-body h3 { font-size: 0.95rem; }
   .t-body p { font-size: 0.82rem; }
 
@@ -137,6 +141,7 @@
   .sp-box { width: 42%; height: 70px; }
 
   .faq-list { gap: 0.7rem; }
+  body.page-logo .faq { padding: 5.6rem 1.15rem 3rem; }
   .faq-q { padding: 1rem 1rem; font-size: 0.92rem; }
   .faq-a { padding: 0 1rem 1rem; font-size: 0.86rem; }
 
