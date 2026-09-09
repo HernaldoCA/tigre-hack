@@ -13,7 +13,7 @@
   margin-bottom: 2.4rem;
 }
 .reg-head:has(.reg-sub[hidden]),
-.reg-head:not(:has(.reg-sub)) {
+.reg-head:not(:has(.reg-sub)):not(:has(.s-sub)) {
   margin-bottom: 0;
 }
 .reg-head:not(:has(.reg-sub)) + .cuenta-panel,
