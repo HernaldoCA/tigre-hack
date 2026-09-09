@@ -71,7 +71,7 @@ nav {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 0.6rem 1.3rem;
-  border-radius: 0;
+  border-radius: 12px;
   margin-left: 0.4rem;
   box-shadow: 5px 5px 0 rgba(16, 16, 16, 0.28);
 }
@@ -399,7 +399,7 @@ section { position: relative; }
   color: #101010;
   font-weight: 400;
   border: 3px solid #101010;
-  border-radius: 0;
+  border-radius: 14px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   box-shadow: 8px 8px 0 rgba(16, 16, 16, 0.3);

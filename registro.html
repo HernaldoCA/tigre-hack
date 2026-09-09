@@ -7,12 +7,12 @@
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Russo+One&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/laptop.css" />
   <link rel="stylesheet" href="css/celular.css" />
-  <link rel="stylesheet" href="css/tigre.css" />
-  <link rel="stylesheet" href="css/registro.css" />
+  <link rel="stylesheet" href="css/tigre.css?v=round2" />
+  <link rel="stylesheet" href="css/registro.css?v=round1" />
 </head>
 <body class="page-logo">
   <div class="tiger-bg"></div>
@@ -242,7 +242,8 @@
       </fieldset>
 
       <div class="reg-actions">
-        <button type="submit" class="btn"><span class="brkt">&lt;</span> Crear cuenta <span class="brkt">/&gt;</span></button>
+        <button type="submit" class="btn" disabled><span class="brkt">&lt;</span> Crear cuenta <span class="brkt">/&gt;</span></button>
+        <p class="reg-req">Los campos con <b>*</b> son obligatorios. Sin ellos no se crea la cuenta.</p>
         <p class="reg-note" id="regNote"></p>
         <p class="auth-link">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
       </div>
@@ -257,7 +258,7 @@
   </main>
 
   <footer>
-    <div class="f-logo">TIGRE HACK '27 · UANL</div>
+    <div class="f-logo"><span class="prompt">$</span> tigrehack@uanl <span class="dim">— '27</span></div>
     <div class="f-socials">
       <a href="#" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -286,7 +287,7 @@
     <p>© 2027 Tigre Hack — Universidad Autónoma de Nuevo León. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="js/auth.js"></script>
-  <script src="js/registro.js"></script>
+  <script src="js/auth.js?v=team2"></script>
+  <script src="js/registro.js?v=req1"></script>
 </body>
 </html>

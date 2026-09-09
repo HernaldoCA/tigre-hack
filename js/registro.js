@@ -2,9 +2,11 @@ const form = document.getElementById("regForm");
 const note = document.getElementById("regNote");
 const done = document.getElementById("regDone");
 const doneMsg = document.getElementById("doneMsg");
+const submitBtn = form.querySelector('button[type="submit"]');
 
 setupMobileMenu();
 setupPasswordToggles();
+watchRequired(form, submitBtn);
 
 if (currentUser()) {
   window.location.replace("perfil.html");
@@ -12,17 +14,23 @@ if (currentUser()) {
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
+  note.className = "reg-note";
   note.textContent = "";
 
-  if (!form.checkValidity()) {
-    const first = form.querySelector(":invalid");
-    first.focus();
-    first.scrollIntoView({ behavior: "smooth", block: "center" });
-    note.textContent = "Faltan datos obligatorios. Revisa los campos marcados con *";
+  const bad = invalidRequired(form);
+  if (bad.length) {
+    submitBtn.disabled = true;
+    bad[0].focus();
+    bad[0].scrollIntoView({ behavior: "smooth", block: "center" });
+    note.textContent =
+      bad.length === 1
+        ? "Falta un campo obligatorio."
+        : `Faltan ${bad.length} campos obligatorios. Llena los que tienen *.`;
     return;
   }
 
   if (form.password.value !== form.password2.value) {
+    form.password2.classList.add("is-invalid");
     note.textContent = "Las contraseñas no coinciden.";
     form.password2.focus();
     return;
@@ -34,9 +42,11 @@ form.addEventListener("submit", async (e) => {
     datos[input.name] = input.type === "checkbox" ? input.checked : input.value.trim();
   });
 
+  submitBtn.disabled = true;
   const res = await createUser(datos, form.password.value);
   if (!res.ok) {
     note.innerHTML = `${res.error} <a href="login.html">Inicia sesión</a>`;
+    submitBtn.disabled = !form.checkValidity();
     return;
   }
 

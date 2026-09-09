@@ -34,17 +34,17 @@
     position: fixed;
     inset: 0;
     z-index: 190;
-    background: #050505;
+    background: var(--bg-deep);
     padding: 5.5rem 1.5rem 2rem;
     flex-direction: column;
   }
   body.menu-open .mobile-menu { display: flex; }
   .mobile-menu a {
-    font-size: 1.35rem;
-    font-weight: 400;
-    font-family: "Russo One", Impact, sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
+    font-size: 1.15rem;
+    font-weight: 500;
+    font-family: var(--mono), ui-monospace, monospace;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
     padding: 1rem 0;
     border-bottom: 1px solid rgba(255, 195, 0, 0.25);
     color: #fff;
@@ -53,15 +53,15 @@
   .mobile-menu .mobile-register {
     margin-top: 1.5rem;
     text-align: center;
-    background: #ffc300;
-    color: #050505;
+    background: var(--gold-grad);
+    color: var(--ink);
     border: 0;
-    border-radius: 0;
+    border-radius: var(--radius);
     padding: 0.85rem 1.5rem;
     font-family: "Russo One", Impact, sans-serif;
     font-weight: 400;
     letter-spacing: 0.08em;
-    box-shadow: 6px 6px 0 #2e3192;
+    box-shadow: 6px 6px 0 var(--circuito);
   }
 
   .hero {
