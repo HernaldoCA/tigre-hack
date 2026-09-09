@@ -131,8 +131,8 @@
   body.page-logo .about { padding-bottom: 1.8rem; }
   body.page-logo .tracks { padding-top: 1.8rem; padding-bottom: 1.8rem; }
   body.page-logo .schedule { padding: 0; }
-  body.page-logo .schedule-pin { padding: 1.2rem 1rem 1.1rem; }
-  body.page-logo .sponsors { padding-top: 1.4rem; }
+  body.page-logo .schedule-pin { padding: 1.2rem 1rem 2rem; }
+  body.page-logo .sponsors { padding: 2.8rem 1.15rem 1.8rem; }
   .t-body h3 { font-size: 0.95rem; }
   .t-body p { font-size: 0.82rem; }
 
@@ -141,7 +141,7 @@
   .sp-box { width: 42%; height: 70px; }
 
   .faq-list { gap: 0.7rem; }
-  body.page-logo .faq { padding: 5.6rem 1.15rem 3rem; }
+  body.page-logo .faq { padding: 2.8rem 1.15rem 3rem; }
   .faq-q { padding: 1rem 1rem; font-size: 0.92rem; }
   .faq-a { padding: 0 1rem 1rem; font-size: 0.86rem; }
 

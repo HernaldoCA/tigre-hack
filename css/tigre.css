@@ -402,6 +402,7 @@ body.page-logo .tracks {
   background: radial-gradient(920px 320px at 50% 0%, rgba(255, 195, 0, 0.12), transparent 72%);
   padding-top: 2.2rem;
   padding-bottom: 2.2rem;
+  scroll-margin-top: var(--nav-h);
 }
 body.page-logo .sponsors {
   background: linear-gradient(180deg, rgba(91, 97, 234, 0.18) 0%, transparent 52%);
@@ -479,7 +480,7 @@ body.page-logo .schedule-pin {
   flex: 1;
   min-height: calc(100svh - var(--nav-h));
   box-sizing: border-box;
-  padding: 1.4rem 1.5rem 1.35rem;
+  padding: 1.4rem 1.5rem 2.4rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -509,26 +510,69 @@ body.page-logo .schedule .s-sub {
 body.page-logo .schedule-board {
   display: flex;
   align-items: center;
-  flex: 1;
+  flex: 0 1 auto;
   width: 100%;
   min-height: 0;
-  overflow-x: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  overflow-x: scroll;
   overflow-y: hidden;
-  padding: 0.2rem 0 0.2rem;
+  padding: 0.2rem 0 0.35rem;
   scroll-snap-type: x proximity;
   overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
-  scrollbar-color: var(--oro) rgba(255, 195, 0, 0.12);
-  scrollbar-width: thin;
 }
-body.page-logo .schedule-board::-webkit-scrollbar { height: 8px; }
-body.page-logo .schedule-board::-webkit-scrollbar-track {
-  background: rgba(255, 195, 0, 0.08);
-  border-radius: 99px;
+body.page-logo .schedule-board::-webkit-scrollbar {
+  height: 10px;
+  background: rgba(255, 195, 0, 0.2);
 }
-body.page-logo .schedule-board::-webkit-scrollbar-thumb {
-  background: var(--gold-grad);
+body.page-logo .schedule-board::-webkit-scrollbar-track,
+body.page-logo .schedule-board::-webkit-scrollbar-track:hover,
+body.page-logo .schedule-board::-webkit-scrollbar-track:active {
+  background: rgba(255, 195, 0, 0.2);
   border-radius: 99px;
+  box-shadow: none;
+}
+body.page-logo .schedule-board::-webkit-scrollbar-thumb,
+body.page-logo .schedule-board::-webkit-scrollbar-thumb:hover,
+body.page-logo .schedule-board::-webkit-scrollbar-thumb:active,
+body.page-logo .schedule-board::-webkit-scrollbar-thumb:window-inactive,
+body.page-logo .schedule-board::-webkit-scrollbar-thumb:horizontal,
+body.page-logo .schedule-board::-webkit-scrollbar-thumb:horizontal:hover,
+body.page-logo .schedule-board::-webkit-scrollbar-thumb:horizontal:active {
+  background: #ffc300 !important;
+  background-color: #ffc300 !important;
+  background-image: none !important;
+  border: 0;
+  border-radius: 99px;
+  box-shadow: none;
+  opacity: 1;
+  filter: none;
+}
+body.page-logo .schedule-board::-webkit-scrollbar-button {
+  display: block;
+  width: 14px;
+  height: 10px;
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 9px 9px;
+}
+body.page-logo .schedule-board::-webkit-scrollbar-button:horizontal:start:increment,
+body.page-logo .schedule-board::-webkit-scrollbar-button:horizontal:end:decrement {
+  display: none;
+  width: 0;
+}
+body.page-logo .schedule-board::-webkit-scrollbar-button:horizontal:decrement,
+body.page-logo .schedule-board::-webkit-scrollbar-button:horizontal:decrement:hover,
+body.page-logo .schedule-board::-webkit-scrollbar-button:horizontal:decrement:active {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath fill='%23ffc300' d='M7.2 1.2 3.2 5l4 3.8'/%3E%3C/svg%3E");
+}
+body.page-logo .schedule-board::-webkit-scrollbar-button:horizontal:increment,
+body.page-logo .schedule-board::-webkit-scrollbar-button:horizontal:increment:hover,
+body.page-logo .schedule-board::-webkit-scrollbar-button:horizontal:increment:active {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath fill='%23ffc300' d='M2.8 1.2 6.8 5l-4 3.8'/%3E%3C/svg%3E");
 }
 body.page-logo .schedule .timeline,
 body.page-logo .schedule .timeline.is-on,
@@ -643,7 +687,31 @@ body.page-logo .schedule .t-item:nth-of-type(even) .t-body::before {
   right: auto;
 }
 body.page-logo .sponsors {
-  padding-top: 1.6rem;
+  min-height: calc(100svh - var(--nav-h));
+  box-sizing: border-box;
+  padding: 3.4rem 1.5rem 2.2rem;
+  scroll-margin-top: var(--nav-h);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+body.page-logo .sponsors .container {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+body.page-logo .sponsors .s-title {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  margin-bottom: 0.3rem;
+}
+body.page-logo .sponsors .s-sub {
+  margin: 0.5rem auto 1.6rem;
+}
+body.page-logo .sponsors-row {
+  flex: 1;
+  align-content: center;
 }
 
 body.page-logo .stat-strip {
@@ -1096,8 +1164,8 @@ body.page-logo .sp-box:hover {
 body.page-logo .faq {
   min-height: 100svh;
   box-sizing: border-box;
-  padding: 6.6rem 1.5rem 3.5rem;
-  scroll-margin-top: 0;
+  padding: 3.4rem 1.5rem 3.5rem;
+  scroll-margin-top: var(--nav-h);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -1107,7 +1175,7 @@ body.page-logo .faq .s-title {
   margin-bottom: 0.3rem;
 }
 body.page-logo .faq .s-sub {
-  margin: 0.5rem auto 1.35rem;
+  margin: 0.5rem auto 2.4rem;
 }
 body.page-logo .faq .container {
   width: 100%;

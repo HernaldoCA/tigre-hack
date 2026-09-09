@@ -116,12 +116,12 @@ sectionNav.forEach((link) => {
   if (link.getAttribute("href") === "#home") return;
   link.addEventListener("click", (e) => {
     const id = link.getAttribute("href").slice(1);
-    if (id === "schedule") {
+    if (id === "schedule" || id === "faq" || id === "sponsors" || id === "tracks") {
       e.preventDefault();
       closeMenu();
-      setActiveSection("schedule");
-      scrollToSection("schedule");
-      history.replaceState(null, "", "#schedule");
+      setActiveSection(id);
+      scrollToSection(id);
+      history.replaceState(null, "", "#" + id);
       return;
     }
     setActiveSection(id);
