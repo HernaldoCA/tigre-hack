@@ -1,4 +1,4 @@
-const EVENT_DATE = new Date("2027-04-16T17:00:00");
+const EVENT_DATE = new Date("2027-05-07T17:00:00");
 
 function pad(n) {
   return String(n).padStart(2, "0");

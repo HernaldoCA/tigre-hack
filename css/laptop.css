@@ -75,7 +75,7 @@
     box-shadow: 9px 9px 0 #101010;
   }
 
-  .tracks-grid { grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  .tracks-grid { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
   .track { padding: 1.75rem; transition: transform 0.15s, box-shadow 0.15s; }
   .track .icon { font-size: 1.7rem; width: 58px; height: 58px; }
   .track h3 { font-size: 1rem; }
