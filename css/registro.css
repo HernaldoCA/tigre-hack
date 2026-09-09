@@ -200,6 +200,9 @@
   height: 18px;
   display: block;
 }
+.pass-toggle .eye-off { display: none; }
+.pass-toggle[aria-pressed="true"] .eye-on { display: none; }
+.pass-toggle[aria-pressed="true"] .eye-off { display: block; }
 
 .check {
   display: flex;
@@ -323,6 +326,25 @@
 .reg-done p { color: var(--muted); margin-bottom: 1.6rem; line-height: 1.6; }
 
 .auth-main { max-width: 520px; }
+
+body.page-login {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+body.page-login .auth-main {
+  flex: 1;
+  padding: 5.6rem 1.25rem 0.6rem;
+}
+body.page-login .reg-head {
+  margin-bottom: 1.1rem;
+}
+body.page-login .reg-actions {
+  margin-top: 1.15rem;
+}
+body.page-login footer {
+  padding: 0.7rem 1.25rem 0.95rem;
+}
 
 .block-hint {
   font-size: 0.82rem;
@@ -562,6 +584,7 @@ button.nav-cta {
 
 @media (max-width: 768px) {
   .reg-main { padding: 6.5rem 1rem 3rem; }
+  body.page-login .auth-main { padding: 5.2rem 1rem 0.5rem; }
   .field-row { grid-template-columns: 1fr; gap: 0.9rem; }
   .reg-block { padding: 1.2rem 1rem 1.1rem; }
   .reg-actions .btn { width: 100%; }
