@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/laptop.css" />
   <link rel="stylesheet" href="css/celular.css" />
-  <link rel="stylesheet" href="css/tigre.css?v=round4" />
+  <link rel="stylesheet" href="css/tigre.css?v=round59" />
   <link rel="stylesheet" href="css/registro.css?v=round4" />
 </head>
 <body class="page-logo page-login">
@@ -31,7 +31,7 @@
       <a href="index.html#faq">Preguntas</a>
     </div>
     <div class="nav-right">
-      <a href="index.html" class="nav-back">← Volver</a>
+      <a href="registro.html" class="nav-cta">Registro</a>
     </div>
     <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menú">
       <span></span><span></span><span></span>
@@ -45,7 +45,7 @@
     <a href="index.html#schedule">Horario</a>
     <a href="index.html#sponsors">Patrocinadores</a>
     <a href="index.html#faq">Preguntas</a>
-    <a href="index.html" class="mobile-register">Volver al inicio</a>
+    <a href="registro.html" class="mobile-register">Registro</a>
   </div>
 
   <main class="reg-main auth-main">
@@ -94,11 +94,13 @@
     <p>© 2027 Tigre Hack — Universidad Autónoma de Nuevo León. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="js/auth.js?v=team2"></script>
+  <script src="js/auth.js?v=team3"></script>
   <script>
     setupMobileMenu();
     setupPasswordToggles();
-    if (currentUser()) window.location.replace("perfil.html");
+    authReady.then((user) => {
+      if (user) window.location.replace("perfil.html");
+    });
 
     const loginForm = document.getElementById("loginForm");
     const loginNote = document.getElementById("loginNote");

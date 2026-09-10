@@ -265,6 +265,12 @@
 .aviso-priv p + p { margin-top: 0.4rem; }
 
 .reg-actions { text-align: center; margin-top: 2rem; }
+.btn-tip {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+.btn-tip:has(.btn:disabled) { cursor: not-allowed; }
 .reg-actions .btn {
   cursor: pointer;
   appearance: none;
@@ -276,10 +282,50 @@
   cursor: not-allowed;
   transform: none;
   box-shadow: 0 0 0 1px var(--ink), 4px 4px 0 var(--circuito);
+  pointer-events: none;
 }
 .reg-actions .btn:disabled:hover {
   transform: none;
   box-shadow: 0 0 0 1px var(--ink), 4px 4px 0 var(--circuito);
+}
+.btn-tip-msg {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 12px);
+  transform: translateX(-50%) translateY(4px);
+  width: max-content;
+  max-width: min(20rem, 82vw);
+  padding: 0.55rem 0.9rem;
+  border-radius: 10px;
+  background: #12121c;
+  border: 1px solid var(--oro);
+  color: var(--oro);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 6;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 18px rgba(255, 195, 0, 0.18);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+}
+.btn-tip-msg::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--oro);
+}
+.btn-tip:has(.btn:disabled):hover .btn-tip-msg {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 .reg-req {
   margin-top: 0.85rem;

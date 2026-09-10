@@ -5,3 +5,7 @@ Desktop.ini
 .env
 .env.*
 *.local
+__pycache__/
+data/*.db
+data/*.db-journal
+data/.secret

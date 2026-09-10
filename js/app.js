@@ -130,49 +130,69 @@ sectionNav.forEach((link) => {
 
 const scheduleSection = document.getElementById("schedule");
 const board = scheduleSection?.querySelector(".schedule-board");
-if (scheduleSection && board) {
+const strip = document.getElementById("scheduleStrip");
+if (scheduleSection && board && strip) {
+  const prevBtn = document.getElementById("schedPrev");
+  const nextBtn = document.getElementById("schedNext");
   const STEP = 320;
+  strip.style.transform = "";
 
   function maxScroll() {
     return Math.max(0, board.scrollWidth - board.clientWidth);
   }
 
-  function atStart() {
-    return board.scrollLeft <= 1;
-  }
-
-  function atEnd() {
-    return board.scrollLeft >= maxScroll() - 1;
+  function updateArrows() {
+    const x = board.scrollLeft;
+    if (prevBtn) prevBtn.disabled = x <= 1;
+    if (nextBtn) nextBtn.disabled = x >= maxScroll() - 1;
   }
 
   function scrollTrack(dir) {
     board.scrollBy({ left: dir * STEP, behavior: "smooth" });
   }
 
-  window.addEventListener("keydown", (e) => {
-    if (e.target && ["INPUT", "TEXTAREA"].includes(e.target.tagName)) return;
-    const rect = scheduleSection.getBoundingClientRect();
-    if (rect.bottom < 80 || rect.top > window.innerHeight - 80) return;
-    if (e.key === "ArrowRight") {
-      e.preventDefault();
-      scrollTrack(1);
-    } else if (e.key === "ArrowLeft") {
-      e.preventDefault();
-      scrollTrack(-1);
-    }
-  });
+  prevBtn?.addEventListener("click", () => scrollTrack(-1));
+  nextBtn?.addEventListener("click", () => scrollTrack(1));
+  board.addEventListener("scroll", updateArrows, { passive: true });
+  window.addEventListener("resize", updateArrows);
 
   board.addEventListener(
     "wheel",
     (e) => {
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-      if (e.deltaY < 0 && atStart()) return;
-      if (e.deltaY > 0 && atEnd()) return;
-      e.preventDefault();
-      board.scrollLeft += e.deltaY;
+      if (maxScroll() <= 0) return;
+      const dx = e.deltaX;
+      const dy = e.deltaY;
+      if (e.shiftKey && Math.abs(dy) >= Math.abs(dx) && dy !== 0) {
+        e.preventDefault();
+        board.scrollLeft += dy;
+      }
     },
     { passive: false }
   );
+
+  let dragging = false;
+  let startX = 0;
+  let startLeft = 0;
+  board.addEventListener("pointerdown", (e) => {
+    if (e.pointerType !== "mouse" || e.button !== 0) return;
+    dragging = true;
+    startX = e.clientX;
+    startLeft = board.scrollLeft;
+    board.classList.add("is-dragging");
+    board.setPointerCapture(e.pointerId);
+  });
+  board.addEventListener("pointermove", (e) => {
+    if (!dragging) return;
+    board.scrollLeft = startLeft - (e.clientX - startX);
+  });
+  function endDrag() {
+    dragging = false;
+    board.classList.remove("is-dragging");
+  }
+  board.addEventListener("pointerup", endDrag);
+  board.addEventListener("pointercancel", endDrag);
+
+  requestAnimationFrame(updateArrows);
 }
 
 document.querySelectorAll(".faq-q").forEach((question) => {

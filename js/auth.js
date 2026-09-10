@@ -1,108 +1,107 @@
-const DB_KEY = "tigrehack_usuarios";
-const SESSION_KEY = "tigrehack_sesion";
+let cachedUser = null;
+let cachedTeam = null;
 
-async function hashPassword(password) {
-  const bytes = new TextEncoder().encode("tigrehack::" + password);
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
-  return [...new Uint8Array(digest)]
-    .map((b) => b.toString(16).padStart(2, "0"))
-    .join("");
+async function api(method, path, body) {
+  const opts = {
+    method,
+    credentials: "include",
+    headers: {},
+  };
+  if (body !== undefined) {
+    opts.headers["Content-Type"] = "application/json";
+    opts.body = JSON.stringify(body);
+  }
+  let data = {};
+  try {
+    const res = await fetch(path, opts);
+    try {
+      data = await res.json();
+    } catch {
+      data = {};
+    }
+    if (!res.ok) {
+      return { ok: false, error: data.error || "No se pudo conectar con el servidor." };
+    }
+    return { ok: data.ok !== false, ...data };
+  } catch {
+    return { ok: false, error: "No se pudo conectar con el servidor. ¿Está corriendo python server.py?" };
+  }
 }
 
-function readUsers() {
-  return JSON.parse(localStorage.getItem(DB_KEY) || "{}");
+function cacheSession(data) {
+  cachedUser = data.user || null;
+  cachedTeam = data.team || null;
+  return cachedUser;
 }
 
-function writeUsers(users) {
-  localStorage.setItem(DB_KEY, JSON.stringify(users));
+async function refreshSession() {
+  const data = await api("GET", "/api/me");
+  if (!data.ok) {
+    cachedUser = null;
+    cachedTeam = null;
+    return null;
+  }
+  return cacheSession(data);
 }
+
+const authReady = refreshSession();
 
 function normalizeEmail(email) {
-  return email.trim().toLowerCase();
-}
-
-function findUser(email) {
-  return readUsers()[normalizeEmail(email)] || null;
+  return String(email || "").trim().toLowerCase();
 }
 
 async function createUser(data, password) {
-  const required = [
-    "nombre",
-    "apellido",
-    "correo",
-    "telefono",
-    "genero",
-    "universidad",
-    "carrera",
-    "graduacion",
-    "nivel",
-    "talla",
-    "github",
-  ];
-  for (const key of required) {
-    if (!String(data[key] || "").trim()) {
-      return { ok: false, error: "Llena todos los campos obligatorios." };
-    }
-  }
-  if (!data.reglamento || !data.estudiante) {
-    return { ok: false, error: "Acepta el reglamento y confirma que eres estudiante." };
-  }
-  if (!password || String(password).length < 8) {
-    return { ok: false, error: "La contraseña debe tener al menos 8 caracteres." };
-  }
-
-  const email = normalizeEmail(data.correo);
-  const users = readUsers();
-  if (users[email]) return { ok: false, error: "Ya existe una cuenta con este correo." };
-
-  users[email] = {
-    ...data,
-    correo: email,
-    equipoCodigo: "",
-    passwordHash: await hashPassword(password),
-    creadoEn: new Date().toISOString(),
-  };
-  writeUsers(users);
-  return { ok: true };
+  const res = await api("POST", "/api/registro", { ...data, password });
+  if (res.ok) cacheSession(res);
+  return res;
 }
 
 async function login(email, password) {
-  const user = findUser(email);
-  if (!user) return { ok: false, error: "No encontramos una cuenta con ese correo." };
-
-  const hash = await hashPassword(password);
-  if (hash !== user.passwordHash) return { ok: false, error: "Contraseña incorrecta." };
-
-  localStorage.setItem(SESSION_KEY, normalizeEmail(email));
-  return { ok: true, user };
+  const res = await api("POST", "/api/login", { correo: email, password });
+  if (res.ok) cacheSession(res);
+  return res;
 }
 
 async function resetPassword(email, password) {
-  const users = readUsers();
-  const key = normalizeEmail(email);
-  if (!users[key]) return { ok: false, error: "No encontramos una cuenta con ese correo." };
-
-  users[key].passwordHash = await hashPassword(password);
-  writeUsers(users);
-  return { ok: true };
+  return api("POST", "/api/recuperar", { correo: email, password });
 }
 
 function currentUser() {
-  const email = localStorage.getItem(SESSION_KEY);
-  return email ? findUser(email) : null;
+  return cachedUser;
 }
 
-function logout() {
-  localStorage.removeItem(SESSION_KEY);
+async function logout() {
+  await api("POST", "/api/logout");
+  cachedUser = null;
+  cachedTeam = null;
 }
 
-function updateUser(data) {
-  const email = localStorage.getItem(SESSION_KEY);
-  if (!email) return false;
-  const users = readUsers();
-  users[email] = { ...users[email], ...data, correo: email };
-  writeUsers(users);
-  return true;
+async function updateUser(data) {
+  const res = await api("PATCH", "/api/me", data);
+  if (res.ok) cacheSession(res);
+  return res.ok;
+}
+
+function userTeam() {
+  return cachedTeam;
+}
+
+async function createTeam(nombre) {
+  const res = await api("POST", "/api/equipo", { nombre });
+  if (res.ok) cacheSession(res);
+  return res;
+}
+
+async function joinTeam(rawCode) {
+  const res = await api("POST", "/api/equipo/unirse", { codigo: rawCode });
+  if (res.ok) cacheSession(res);
+  return res;
+}
+
+async function leaveTeam() {
+  const res = await api("POST", "/api/equipo/salir");
+  if (res.ok) cacheSession(res);
+  return res;
 }
 
 function trimFormFields(form) {
@@ -166,98 +165,6 @@ function setupMobileMenu() {
   mobileMenu.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => document.body.classList.remove("menu-open"));
   });
-}
-
-const TEAMS_KEY = "tigrehack_equipos";
-const TEAM_MAX = 4;
-const CODE_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-
-function readTeams() {
-  return JSON.parse(localStorage.getItem(TEAMS_KEY) || "{}");
-}
-
-function writeTeams(teams) {
-  localStorage.setItem(TEAMS_KEY, JSON.stringify(teams));
-}
-
-function newTeamCode() {
-  let code = "";
-  for (let i = 0; i < 6; i++) {
-    code += CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)];
-  }
-  return code;
-}
-
-function userTeam() {
-  const user = currentUser();
-  if (!user?.equipoCodigo) return null;
-  return readTeams()[user.equipoCodigo] || null;
-}
-
-function createTeam(nombre) {
-  const user = currentUser();
-  if (!user) return { ok: false, error: "Inicia sesión para crear un equipo." };
-  if (userTeam()) return { ok: false, error: "Ya estás en un equipo." };
-
-  const nombreLimpio = String(nombre || "").trim();
-  if (!nombreLimpio) return { ok: false, error: "Escribe el nombre del equipo." };
-  if (nombreLimpio.length < 2) return { ok: false, error: "El nombre debe tener al menos 2 letras." };
-
-  const teams = readTeams();
-  let codigo = newTeamCode();
-  while (teams[codigo]) codigo = newTeamCode();
-
-  const team = {
-    codigo,
-    nombre: nombreLimpio,
-    capitan: user.correo,
-    miembros: [user.correo],
-    creadoEn: new Date().toISOString(),
-  };
-  teams[codigo] = team;
-  writeTeams(teams);
-  updateUser({ equipoCodigo: codigo });
-  return { ok: true, team };
-}
-
-function joinTeam(rawCode) {
-  const user = currentUser();
-  if (!user) return { ok: false, error: "Inicia sesión para unirte a un equipo." };
-  if (userTeam()) return { ok: false, error: "Ya estás en un equipo." };
-
-  const codigo = String(rawCode || "").trim().toUpperCase();
-  if (codigo.length !== 6) return { ok: false, error: "El código tiene 6 letras." };
-  const teams = readTeams();
-  const team = teams[codigo];
-  if (!team) return { ok: false, error: "Ese código no existe." };
-  if (team.miembros.includes(user.correo)) return { ok: true, team };
-  if (team.miembros.length >= TEAM_MAX) {
-    return { ok: false, error: "Ese equipo ya tiene 4 personas." };
-  }
-
-  team.miembros.push(user.correo);
-  writeTeams(teams);
-  updateUser({ equipoCodigo: codigo });
-  return { ok: true, team };
-}
-
-function leaveTeam() {
-  const user = currentUser();
-  if (!user?.equipoCodigo) return { ok: false, error: "No estás en un equipo." };
-
-  const teams = readTeams();
-  const team = teams[user.equipoCodigo];
-  if (team) {
-    team.miembros = team.miembros.filter((correo) => correo !== user.correo);
-    if (!team.miembros.length) {
-      delete teams[user.equipoCodigo];
-    } else if (team.capitan === user.correo) {
-      team.capitan = team.miembros[0];
-    }
-    writeTeams(teams);
-  }
-  updateUser({ equipoCodigo: "" });
-  return { ok: true };
 }
 
 function pageFile() {
@@ -346,8 +253,9 @@ function applySessionNav() {
 
   function salir(e) {
     e.preventDefault();
-    logout();
-    window.location.href = "index.html";
+    logout().then(() => {
+      window.location.href = "index.html";
+    });
   }
   document.getElementById("navLogout")?.addEventListener("click", salir);
   document.getElementById("navLogoutMobile")?.addEventListener("click", salir);
@@ -364,8 +272,4 @@ function applySessionNav() {
   }
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", applySessionNav);
-} else {
-  applySessionNav();
-}
+authReady.then(() => applySessionNav());

@@ -335,12 +335,16 @@
     <p>© 2027 Tigre Hack — Universidad Autónoma de Nuevo León. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="js/auth.js?v=team2"></script>
+  <script src="js/auth.js?v=team3"></script>
   <script>
     setupMobileMenu();
 
+    authReady.then(() => {
     const user = currentUser();
-    if (!user) window.location.replace("login.html");
+    if (!user) {
+      window.location.replace("login.html");
+      return;
+    }
 
     const PANELS = ["solicitud", "equipo", "perfil"];
     const titles = {
@@ -356,23 +360,23 @@
       });
     }
 
-    function saveForm(form, note) {
+    async function saveForm(form, note) {
       const datos = {};
       form.querySelectorAll("input, select").forEach((input) => {
         if (!input.name || input.name === "correo") return;
         if (input.type === "file" || input.type === "password") return;
         datos[input.name] = input.value.trim();
       });
-      updateUser(datos);
-      note.className = "reg-note ok";
-      note.textContent = "Cambios guardados.";
+      const ok = await updateUser(datos);
+      note.className = ok ? "reg-note ok" : "reg-note";
+      note.textContent = ok ? "Cambios guardados." : "No se pudieron guardar los cambios.";
     }
 
     function bindSave(form, note) {
       fillForm(form, currentUser());
       const submitBtn = form.querySelector('button[type="submit"]');
       watchRequired(form, submitBtn);
-      form.addEventListener("submit", (e) => {
+      form.addEventListener("submit", async (e) => {
         e.preventDefault();
         note.className = "reg-note";
         note.textContent = "";
@@ -386,7 +390,7 @@
               : `Faltan ${bad.length} campos obligatorios.`;
           return;
         }
-        saveForm(form, note);
+        await saveForm(form, note);
       });
     }
 
@@ -469,7 +473,7 @@
       perfilNote.textContent = "";
       try {
         const dataUrl = await shrinkPhoto(file);
-        updateUser({ foto: dataUrl });
+        await updateUser({ foto: dataUrl });
         renderFoto(currentUser());
         perfilNote.className = "reg-note ok";
         perfilNote.textContent = "Foto actualizada.";
@@ -477,8 +481,8 @@
         perfilNote.textContent = err.message || "No se pudo guardar la foto.";
       }
     });
-    fotoQuitar.addEventListener("click", () => {
-      updateUser({ foto: "" });
+    fotoQuitar.addEventListener("click", async () => {
+      await updateUser({ foto: "" });
       renderFoto(currentUser());
       perfilNote.className = "reg-note ok";
       perfilNote.textContent = "Foto quitada.";
@@ -509,21 +513,20 @@
       document.getElementById("equipoLead").textContent = "";
       document.getElementById("equipoNombre").textContent = team.nombre;
       document.getElementById("equipoCodigo").textContent = team.codigo;
-      const users = readUsers();
-      document.getElementById("equipoMiembros").innerHTML = team.miembros
-        .map((correo) => {
-          const miembro = users[correo];
-          const nombre = miembro ? `${miembro.nombre} ${miembro.apellido}`.trim() : correo;
+      document.getElementById("equipoMiembros").innerHTML = (team.miembros || [])
+        .map((miembro) => {
+          const correo = miembro.correo;
+          const nombre = `${miembro.nombre || ""} ${miembro.apellido || ""}`.trim() || correo;
           const rol = correo === team.capitan ? "capitán" : "integrante";
-          const avatar = miembro?.foto
+          const avatar = miembro.foto
             ? `<img class="mini-foto" src="${miembro.foto}" alt="">`
-            : `<span class="mini-foto-ph">${initialsOf(miembro || { nombre: correo })}</span>`;
+            : `<span class="mini-foto-ph">${initialsOf(miembro)}</span>`;
           return `<li>${avatar}<span>${nombre}</span><small>${rol}</small></li>`;
         })
         .join("");
     }
 
-    document.getElementById("crearEquipoForm").addEventListener("submit", (e) => {
+    document.getElementById("crearEquipoForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const form = e.target;
       const bad = invalidRequired(form);
@@ -532,7 +535,7 @@
         setEquipoNote("Escribe el nombre del equipo.");
         return;
       }
-      const res = createTeam(form.nombre.value);
+      const res = await createTeam(form.nombre.value);
       if (!res.ok) {
         form.nombre.classList.add("is-invalid");
         setEquipoNote(res.error);
@@ -553,8 +556,8 @@
       if (limpio.length === 6) tryJoin(limpio);
     });
 
-    function tryJoin(raw) {
-      const res = joinTeam(raw);
+    async function tryJoin(raw) {
+      const res = await joinTeam(raw);
       if (!res.ok) {
         setEquipoNote(res.error);
         return;
@@ -563,8 +566,8 @@
       setEquipoNote("Ya estás en el equipo.", true);
     }
 
-    document.getElementById("salirEquipoBtn").addEventListener("click", () => {
-      const res = leaveTeam();
+    document.getElementById("salirEquipoBtn").addEventListener("click", async () => {
+      const res = await leaveTeam();
       if (!res.ok) {
         setEquipoNote(res.error);
         return;
@@ -600,11 +603,13 @@
 
     function cerrarSesion(e) {
       e.preventDefault();
-      logout();
-      window.location.href = "index.html";
+      logout().then(() => {
+        window.location.href = "index.html";
+      });
     }
     document.getElementById("logoutBtn").addEventListener("click", cerrarSesion);
     document.getElementById("logoutBtnMobile")?.addEventListener("click", cerrarSesion);
+    });
   </script>
 </body>
 </html>

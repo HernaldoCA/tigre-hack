@@ -8,9 +8,9 @@ setupMobileMenu();
 setupPasswordToggles();
 watchRequired(form, submitBtn);
 
-if (currentUser()) {
-  window.location.replace("perfil.html");
-}
+authReady.then((user) => {
+  if (user) window.location.replace("perfil.html");
+});
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();

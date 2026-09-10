@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/laptop.css" />
   <link rel="stylesheet" href="css/celular.css" />
-  <link rel="stylesheet" href="css/tigre.css?v=round4" />
-  <link rel="stylesheet" href="css/registro.css?v=round3" />
+  <link rel="stylesheet" href="css/tigre.css?v=round59" />
+  <link rel="stylesheet" href="css/registro.css?v=round5" />
 </head>
 <body class="page-logo">
   <div class="tiger-bg"></div>
@@ -31,25 +31,7 @@
       <a href="index.html#faq">Preguntas</a>
     </div>
     <div class="nav-right">
-      <a href="#" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="2" width="20" height="20" rx="5" />
-          <circle cx="12" cy="12" r="4" />
-          <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
-        </svg>
-      </a>
-      <a href="#" target="_blank" rel="noopener" title="X" aria-label="X">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M17.53 3h3.02l-6.6 7.54L21.75 21h-5.9l-4.62-5.9L5.94 21H2.92l7.06-8.07L2.5 3h6.05l4.18 5.4L17.53 3Zm-1.06 16.2h1.67L7.6 4.71H5.81l10.66 14.49Z" />
-        </svg>
-      </a>
-      <a href="#" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.02-3.07-1.9-3.07-1.9 0-2.2 1.46-2.2 2.97V21h-4V9Z" />
-        </svg>
-      </a>
-      <a href="login.html" class="nav-login">Iniciar sesión</a>
-      <a href="index.html" class="nav-cta">Inicio</a>
+      <a href="login.html" class="nav-cta">Iniciar sesión</a>
     </div>
     <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menú">
       <span></span><span></span><span></span>
@@ -63,8 +45,7 @@
     <a href="index.html#schedule">Horario</a>
     <a href="index.html#sponsors">Patrocinadores</a>
     <a href="index.html#faq">Preguntas</a>
-    <a href="login.html">Iniciar sesión</a>
-    <a href="index.html" class="mobile-register">Volver al inicio</a>
+    <a href="login.html" class="mobile-register">Iniciar sesión</a>
   </div>
 
   <main class="reg-main">
@@ -242,7 +223,10 @@
       </fieldset>
 
       <div class="reg-actions">
-        <button type="submit" class="btn" disabled><span class="brkt">&lt;</span> Crear cuenta <span class="brkt">/&gt;</span></button>
+        <div class="btn-tip">
+          <button type="submit" class="btn" disabled aria-describedby="crearTip"><span class="brkt">&lt;</span> Crear cuenta <span class="brkt">/&gt;</span></button>
+          <span class="btn-tip-msg" id="crearTip" role="tooltip">Debes completar todos los campos obligatorios.</span>
+        </div>
         <p class="reg-req">Los campos con <b>*</b> son obligatorios. Sin ellos no se crea la cuenta.</p>
         <p class="reg-note" id="regNote"></p>
         <p class="auth-link">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
@@ -286,7 +270,7 @@
     <p>© 2027 Tigre Hack — Universidad Autónoma de Nuevo León. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="js/auth.js?v=team2"></script>
+  <script src="js/auth.js?v=team3"></script>
   <script src="js/registro.js?v=req1"></script>
 </body>
 </html>

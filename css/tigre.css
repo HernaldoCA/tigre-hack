@@ -399,10 +399,33 @@ body.page-logo .s-oro {
   color: var(--blanco);
 }
 body.page-logo .tracks {
+  min-height: calc(100svh - var(--nav-h));
+  box-sizing: border-box;
   background: radial-gradient(920px 320px at 50% 0%, rgba(255, 195, 0, 0.12), transparent 72%);
-  padding-top: 2.2rem;
-  padding-bottom: 2.2rem;
+  padding: 3.4rem 1.5rem 2.2rem;
   scroll-margin-top: var(--nav-h);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+body.page-logo .tracks .container {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+body.page-logo .tracks .s-title {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  margin-bottom: 0.3rem;
+}
+body.page-logo .tracks .s-sub {
+  margin: 0.5rem auto 1.6rem;
+}
+body.page-logo .tracks-grid {
+  flex: 1;
+  align-content: center;
+  width: 100%;
 }
 body.page-logo .sponsors {
   background: linear-gradient(180deg, rgba(91, 97, 234, 0.18) 0%, transparent 52%);
@@ -507,72 +530,79 @@ body.page-logo .schedule .s-sub {
   margin: 0.4rem auto 0.7rem;
   font-size: 0.82rem;
 }
-body.page-logo .schedule-board {
+body.page-logo .schedule-track {
+  position: relative;
   display: flex;
   align-items: center;
   flex: 0 1 auto;
   width: 100%;
+  min-width: 0;
   min-height: 0;
   margin-top: auto;
   margin-bottom: auto;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  padding: 0.2rem 0 0.35rem;
-  scroll-snap-type: x proximity;
-  overscroll-behavior-x: contain;
-  -webkit-overflow-scrolling: touch;
+  padding: 0 3.4rem;
 }
-body.page-logo .schedule-board::-webkit-scrollbar {
-  height: 10px;
-  background: rgba(255, 195, 0, 0.2);
-}
-body.page-logo .schedule-board::-webkit-scrollbar-track,
-body.page-logo .schedule-board::-webkit-scrollbar-track:hover,
-body.page-logo .schedule-board::-webkit-scrollbar-track:active {
-  background: rgba(255, 195, 0, 0.2);
-  border-radius: 99px;
-  box-shadow: none;
-}
-body.page-logo .schedule-board::-webkit-scrollbar-thumb,
-body.page-logo .schedule-board::-webkit-scrollbar-thumb:hover,
-body.page-logo .schedule-board::-webkit-scrollbar-thumb:active,
-body.page-logo .schedule-board::-webkit-scrollbar-thumb:window-inactive,
-body.page-logo .schedule-board::-webkit-scrollbar-thumb:horizontal,
-body.page-logo .schedule-board::-webkit-scrollbar-thumb:horizontal:hover,
-body.page-logo .schedule-board::-webkit-scrollbar-thumb:horizontal:active {
-  background: #ffc300 !important;
-  background-color: #ffc300 !important;
-  background-image: none !important;
+body.page-logo .sched-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 5.6rem;
+  padding: 0;
   border: 0;
-  border-radius: 99px;
+  border-radius: 0;
+  background: none;
   box-shadow: none;
-  opacity: 1;
+  color: var(--oro);
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+body.page-logo .sched-arrow svg {
+  display: block;
+  width: 2.4rem;
+  height: 4.8rem;
+}
+body.page-logo #schedPrev { left: 0; }
+body.page-logo #schedNext { right: 0; }
+body.page-logo .sched-arrow:hover:not(:disabled) {
+  color: var(--oro-hi);
+  filter: drop-shadow(0 0 12px rgba(255, 195, 0, 0.55));
+}
+body.page-logo .sched-arrow:disabled {
+  opacity: 0.28;
+  cursor: default;
   filter: none;
 }
-body.page-logo .schedule-board::-webkit-scrollbar-button {
+body.page-logo .schedule-board {
   display: block;
-  width: 14px;
-  height: 10px;
-  border: 0;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 9px 9px;
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.2rem 0;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
 }
-body.page-logo .schedule-board::-webkit-scrollbar-button:horizontal:start:increment,
-body.page-logo .schedule-board::-webkit-scrollbar-button:horizontal:end:decrement {
+body.page-logo .schedule-board.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+body.page-logo .schedule-board::-webkit-scrollbar {
   display: none;
   width: 0;
+  height: 0;
 }
-body.page-logo .schedule-board::-webkit-scrollbar-button:horizontal:decrement,
-body.page-logo .schedule-board::-webkit-scrollbar-button:horizontal:decrement:hover,
-body.page-logo .schedule-board::-webkit-scrollbar-button:horizontal:decrement:active {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath fill='%23ffc300' d='M7.2 1.2 3.2 5l4 3.8'/%3E%3C/svg%3E");
-}
-body.page-logo .schedule-board::-webkit-scrollbar-button:horizontal:increment,
-body.page-logo .schedule-board::-webkit-scrollbar-button:horizontal:increment:hover,
-body.page-logo .schedule-board::-webkit-scrollbar-button:horizontal:increment:active {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath fill='%23ffc300' d='M2.8 1.2 6.8 5l-4 3.8'/%3E%3C/svg%3E");
+body.page-logo .schedule-strip {
+  display: flex;
+  width: max-content;
 }
 body.page-logo .schedule .timeline,
 body.page-logo .schedule .timeline.is-on,
@@ -1377,6 +1407,15 @@ body.page-logo footer p { opacity: 0.45; color: var(--blanco); }
   body.page-logo .schedule .t-item:nth-of-type(even) .t-body::before {
     left: 1rem;
     right: auto;
+  }
+  body.page-logo .schedule-track { padding: 0 2.4rem; }
+  body.page-logo .sched-arrow {
+    width: 2.4rem;
+    height: 4.4rem;
+  }
+  body.page-logo .sched-arrow svg {
+    width: 1.8rem;
+    height: 3.6rem;
   }
   body.page-logo .schedule-board { min-height: 0; }
   .nav-cta { font-size: 0.72rem; padding: 0.45rem 0.85rem; }
